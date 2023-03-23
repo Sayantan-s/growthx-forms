@@ -1,8 +1,9 @@
-import { Button } from '@/components/atoms';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { useFormContext } from '..';
+import { Button } from './Button';
+import { Descriptor } from './Descriptor';
 import { Onboarding } from './Onboarding';
 import { Panel } from './Panel';
 
@@ -24,7 +25,12 @@ const Root: FC<Props> = ({ children }) => {
 Onboarding.displayName = 'Form.Entries.Onboarding';
 Panel.displayName = 'Form.Entries.Panel';
 
-export const Entries = Object.assign(Root, { Onboarding, Panel, Button });
+export const Entries = Object.assign(Root, {
+  Onboarding,
+  Panel,
+  Button,
+  Descriptor,
+});
 
 const GrowthXEntry = styled(motion.div)`
   width: 100%;

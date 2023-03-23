@@ -1,4 +1,4 @@
 import styled from 'styled-components';
-import { HeadingProps } from './types';
+import { TextProps } from './types';
 
-export const Component = styled.p<HeadingProps>``;
+export const Component = styled.p<TextProps>``;

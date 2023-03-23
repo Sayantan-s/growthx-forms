@@ -16,9 +16,9 @@ export const GrowthXForms = ({
               return (
                 <div>
                   <h1>{onboarding.heading}</h1>
-                  <p
-                    dangerouslySetInnerHTML={{ __html: onboarding.description }}
-                  />
+                  <Form.Entries.Descriptor>
+                    {onboarding.description}
+                  </Form.Entries.Descriptor>
                   <Form.Entries.Button onClick={handleIncrement}>
                     {onboarding.buttonText}
                   </Form.Entries.Button>

@@ -1,6 +1,6 @@
 import { ApiResponse } from '@/api/api.types';
 import { once } from 'lodash';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Entries } from './Entries';
 import { Progressbar } from './Progressbar';
@@ -34,6 +34,16 @@ const Root = <TOnboard, TQuestions>({
   const { formStep, handleDecrement, handleIncrement } = useFormControls(
     children.length
   );
+
+  useEffect(() => {
+    console.log('HELLO');
+    document.addEventListener('touchstart', (eve) => {
+      console.log('START', eve);
+    });
+    document.addEventListener('touchmove', (eve) => {
+      console.log('START', eve);
+    });
+  }, []);
 
   return (
     <FormContext.Provider
