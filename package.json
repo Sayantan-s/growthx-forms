@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "yarn husky install"
   },
   "dependencies": {
     "@types/node": "18.15.5",

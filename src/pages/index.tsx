@@ -1,4 +1,33 @@
 import Head from 'next/head';
+import styled from 'styled-components';
+
+/*
+
+OUTPUT DATASTRUCTURE
+
+First Name: Sayantan
+Last Name: Samanta
+Industry of Company: Primary/Secondary Education
+Role: VC
+Professional Goal: Connect with like-minded people, Get hired
+Email: sssamanta789@gmail.com
+Phone: +919163456288
+
+*/
+
+/*
+api=https://flagcdn.com/en/codes.json
+srcset ="https://flagcdn.com/32x24/za.png 2x,
+    https://flagcdn.com/48x36/za.png 3x"
+src = https://flagcdn.com/16x12/za.png
+
+*/
+
+/*
+
+companys.txt
+
+*/
 
 export default function Home() {
   return (
@@ -9,7 +38,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>Start building....</main>
+      <Main>Start building....</Main>
     </>
   );
 }
+
+const Main = styled.main`
+  color: red;
+`;
