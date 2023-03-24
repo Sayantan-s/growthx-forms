@@ -1,24 +1,27 @@
-import { Text as Heading, View } from '@/components/atoms';
+import { Text as Heading } from '@/components/atoms';
 import { motion } from 'framer-motion';
-import { FC } from 'react';
 import styled from 'styled-components';
-import { useFormContext } from '..';
+import { FormContextProps, useFormContext } from '..';
 import { Button } from './Button';
+import { DataInput } from './DataInput';
 import { Descriptor } from './Descriptor';
 import { Onboarding } from './Onboarding';
 import { Panel } from './Panel';
+import { Panels } from './Panels';
 
-interface Props {
-  children: JSX.Element[];
+interface Props<TOnBoard, TQuestions, TState> {
+  children: (
+    props: FormContextProps<TOnBoard, TQuestions, TState>
+  ) => JSX.Element;
 }
 
-const Root: FC<Props> = ({ children }) => {
-  const { step } = useFormContext();
-  if (children[0].type.displayName !== 'Form.Entries.Onboarding')
-    throw new Error('First Component should be Form.Entries.Onboarding');
+const Root = <TOnBoard, TQuestions, TState>({
+  children,
+}: Props<TOnBoard, TQuestions, TState>) => {
+  const context = useFormContext<TOnBoard, TQuestions, TState>();
   return (
     <GrowthXEntry>
-      <GrowthXEntrylContent>{children[step]}</GrowthXEntrylContent>
+      <GrowthXEntrylContent>{children(context)}</GrowthXEntrylContent>
     </GrowthXEntry>
   );
 };
@@ -26,7 +29,6 @@ const Root: FC<Props> = ({ children }) => {
 Onboarding.displayName = 'Form.Entries.Onboarding';
 Panel.displayName = 'Form.Entries.Panel';
 Heading.displayName = 'Form.Entries.Heading';
-View.displayName = 'Form.Entries.';
 
 export const Entries = Object.assign(Root, {
   Onboarding,
@@ -34,6 +36,8 @@ export const Entries = Object.assign(Root, {
   Button,
   Descriptor,
   Heading,
+  Panels,
+  DataInput,
 });
 
 const GrowthXEntry = styled(motion.div)`

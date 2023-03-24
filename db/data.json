@@ -13,12 +13,12 @@
         "type": "input",
         "inputConfig": {
           "placeholder": "Type your answer here...",
-          "required": true,
-          "name": "First Name"
+          "name": "First Name",
+          "type": "text"
         },
-        "error": { "empty": "Please fill this in" }
+        "checks": { "required": true }
       },
-      "id": "4c6935f6-2672-4ff5-a6d8-f4df3bd4ce4c"
+      "id": "c0e8f2fd-1702-4963-b3c2-729eae666c6a"
     },
     {
       "question": "and your last name, $1?",
@@ -28,12 +28,12 @@
         "type": "input",
         "inputConfig": {
           "placeholder": "Type your answer here...",
-          "required": true,
-          "name": "Last Name"
+          "name": "Last Name",
+          "type": "text"
         },
-        "error": { "empty": "Please fill this in" }
+        "checks": { "required": true }
       },
-      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
+      "id": "d8015c74-5570-4f70-a10c-1daa109e0b3a"
     },
     {
       "question": "What industry is your company in?",
@@ -43,580 +43,603 @@
         "type": "datalist",
         "inputConfig": {
           "placeholder": "Type or select an option",
-          "required": true,
           "name": "Industry of Company",
           "options": [
             {
-              "id": "44694da9-477d-472b-928e-98e6b9a9d1bd",
-              "name": "Accounting"
+              "id": "c5a53cfc-36a4-490e-9512-41b80533206b",
+              "option": "Accounting"
             },
             {
-              "id": "325f56b3-5395-4f23-9c17-18d2055c6864",
-              "name": "Airlines/Aviation"
+              "id": "383a7dca-d9ec-4010-aebc-934ee388ba42",
+              "option": "Airlines/Aviation"
             },
             {
-              "id": "fb0d0521-995f-489d-baa9-2bad3366457a",
-              "name": "Alternative Dispute Resolution"
+              "id": "b3523b8a-6c47-461d-a36f-dc03f9ba1be6",
+              "option": "Alternative Dispute Resolution"
             },
             {
-              "id": "9b4044f1-32aa-4845-bba3-48efb3c53e97",
-              "name": "Alternative Medicine"
+              "id": "5eb07d81-2704-4d7c-8d46-ff424f526c7f",
+              "option": "Alternative Medicine"
             },
             {
-              "id": "71ade5fe-6226-4652-8799-1ce4a49bdbcd",
-              "name": "Animation"
+              "id": "5d405eb3-2902-47d9-9c4f-128500c80f98",
+              "option": "Animation"
             },
             {
-              "id": "a90e1229-b6c1-4f1c-b0e4-61511ce1fe3f",
-              "name": "Apparel & Fashion"
+              "id": "b996cb4d-32c2-4b62-9a4b-d82eb378b605",
+              "option": "Apparel & Fashion"
             },
             {
-              "id": "64ea9817-f032-4c48-b64f-207d893d2162",
-              "name": "Architecture & Planning"
+              "id": "32a99e2f-621f-4542-9283-c5653a9de8f6",
+              "option": "Architecture & Planning"
             },
             {
-              "id": "22ee9d26-6be9-4cef-b818-2f07707ceaaa",
-              "name": "Arts and Crafts"
+              "id": "2dbb396b-f94b-47bd-8c7d-d729b87cbed4",
+              "option": "Arts and Crafts"
             },
             {
-              "id": "59a80883-1980-482c-8808-85d6da89070e",
-              "name": "Automotive"
+              "id": "d1e790fb-17ba-4fff-89d1-cb926187ed41",
+              "option": "Automotive"
             },
             {
-              "id": "1843dc96-2260-4ec8-9803-0dca15144860",
-              "name": "Aviation & Aerospace"
+              "id": "7b1b9055-18be-450c-99f1-5892d6e240b7",
+              "option": "Aviation & Aerospace"
             },
-            { "id": "4f6b451f-ecd7-4888-8042-d6d51b3ba52e", "name": "Banking" },
             {
-              "id": "7aeeb43d-3683-4d5c-93c5-9939c1f13c80",
-              "name": "Biotechnology"
+              "id": "d0296dfc-6fba-4510-a0a4-e479c45a0a2b",
+              "option": "Banking"
             },
             {
-              "id": "acd7f8ed-865e-46b8-89cc-6f633b420333",
-              "name": "Broadcast Media"
+              "id": "180bb953-a45b-45eb-b9dd-01dedb4c3aba",
+              "option": "Biotechnology"
             },
             {
-              "id": "72f120ce-622a-49fe-8130-2337d616caf2",
-              "name": "Building Materials"
+              "id": "2ba3a61b-8f94-4235-aa21-312e42f41025",
+              "option": "Broadcast Media"
             },
             {
-              "id": "7ae41755-82f4-4467-ac94-b62f732598fa",
-              "name": "Business Supplies and Equipment"
+              "id": "62771ed6-8829-443e-a1b3-8d6e7d45a3e5",
+              "option": "Building Materials"
             },
             {
-              "id": "3687f999-78c9-435e-ad74-d5121a3e4f36",
-              "name": "Capital Markets"
+              "id": "af041fd8-8e2b-4576-866a-733e5a344722",
+              "option": "Business Supplies and Equipment"
             },
             {
-              "id": "d1f4f538-770f-4d32-af31-ae60873c3046",
-              "name": "Chemicals"
+              "id": "dffa043b-996a-4fa9-8573-2426f4f59700",
+              "option": "Capital Markets"
             },
             {
-              "id": "d8afdd68-3b49-4b20-b77d-b380fef74fe6",
-              "name": "Civic & Social Organization"
+              "id": "36283e26-50d6-4310-981f-334554587c0f",
+              "option": "Chemicals"
             },
             {
-              "id": "11c2532c-15b3-4b81-8d04-ee3232bb4fa7",
-              "name": "Civil Engineering"
+              "id": "d4c80ad5-1962-460b-a83b-eaf946f855a6",
+              "option": "Civic & Social Organization"
             },
             {
-              "id": "b28bcb0f-75d6-4704-b5f9-268c8a6ef8fb",
-              "name": "Commercial Real Estate"
+              "id": "6775be65-913f-4a21-b192-8107ab539195",
+              "option": "Civil Engineering"
             },
             {
-              "id": "d3a2fdc9-e512-4b75-9db8-a6cc2310eca7",
-              "name": "Computer & Network Security"
+              "id": "ae8fd012-98fd-4468-b882-cb81e8318121",
+              "option": "Commercial Real Estate"
             },
             {
-              "id": "44c80f15-be10-434d-b8a7-978149a9c8b4",
-              "name": "Computer Games"
+              "id": "82b06ff8-bfdb-4af0-ae24-86a97c8c1bd1",
+              "option": "Computer & Network Security"
             },
             {
-              "id": "e7c1a5d1-591a-4168-8858-1d1322a1ded5",
-              "name": "Computer Hardware"
+              "id": "10705e7d-c216-4a28-971f-c93325d8c249",
+              "option": "Computer Games"
             },
             {
-              "id": "c8ecc6b8-83fb-4bab-87f0-6507d778e6f7",
-              "name": "Computer Networking"
+              "id": "23eb1089-40a6-4dbc-a273-af1ec5f3de56",
+              "option": "Computer Hardware"
             },
             {
-              "id": "12f0b3ea-b90a-4d14-882b-dcd1d37d9459",
-              "name": "Computer Software"
+              "id": "25501f08-bfc3-404b-97fd-6f4310c23dae",
+              "option": "Computer Networking"
             },
             {
-              "id": "6c29fac3-7476-4d17-9268-681fd883d4c6",
-              "name": "Construction"
+              "id": "e9cb6e04-29b7-4768-a7f3-bb32e96b7ce3",
+              "option": "Computer Software"
             },
             {
-              "id": "5835fddb-ea49-4889-8417-10e7eeaf5651",
-              "name": "Consumer Electronics"
+              "id": "2eee74e4-06fa-4cf5-b434-6a98dc270651",
+              "option": "Construction"
             },
-            { "id": "0215b515-403d-4497-876a-24ec0ac11268", "name": "Crypto" },
             {
-              "id": "d0fda1d8-c868-40a0-9701-e38b51de2973",
-              "name": "Consumer Goods"
+              "id": "64d3ac19-f265-4a4d-aeb7-462bbe336703",
+              "option": "Consumer Electronics"
             },
             {
-              "id": "342a8544-a6da-48dd-a6d2-7a00477e0130",
-              "name": "Consumer Services"
+              "id": "de454276-c2f1-4f4a-95cb-9f316ba5a274",
+              "option": "Crypto"
             },
             {
-              "id": "c15a5006-200c-4411-aa16-484b90214b13",
-              "name": "Cosmetics"
+              "id": "ea3ed448-ad86-4e06-8638-0514257b4477",
+              "option": "Consumer Goods"
             },
-            { "id": "9455518b-eb1b-40d0-bb00-8500e232bfc0", "name": "Dairy" },
             {
-              "id": "5582b065-a5b9-45ef-b9d8-5c16e862af7b",
-              "name": "Defense & Space"
+              "id": "d576e5d5-bc18-4c49-8aff-383928cb5f95",
+              "option": "Consumer Services"
             },
-            { "id": "9183665c-1871-4a37-a05b-87d74b603f99", "name": "Design" },
-            { "id": "6f38cb6b-a74d-4ca1-b790-67b0c76501e1", "name": "Edtech" },
             {
-              "id": "8153bded-7cca-4038-8d50-8e678cf8f0b3",
-              "name": "Education Management"
+              "id": "6b380ff5-8cfd-437f-8f5e-407e43e76528",
+              "option": "Cosmetics"
             },
+            { "id": "9b23c2c5-2512-46e1-8291-85abca72a299", "option": "Dairy" },
             {
-              "id": "ca2285c2-cb65-4a58-84a9-1c3461c0e567",
-              "name": "E-Learning"
+              "id": "5580594f-fdf1-46d9-8759-eec423161b7c",
+              "option": "Defense & Space"
             },
             {
-              "id": "cb6040d5-401c-4fa3-bc48-9fbb6e9f7688",
-              "name": "Electrical/Electronic Manufacturing"
+              "id": "0cdb4b53-725e-409a-aa10-e0d99ca7191c",
+              "option": "Design"
             },
             {
-              "id": "6f2bb933-6a42-4463-ab4c-0e97b0c00a7b",
-              "name": "Entertainment"
+              "id": "97a617d4-2b07-4a14-9752-d606a7d6b321",
+              "option": "Edtech"
             },
             {
-              "id": "82a26cf2-a812-411f-b331-168c938703a8",
-              "name": "Environmental Services"
+              "id": "009f4628-3f42-4b14-ae37-aaa0db2778eb",
+              "option": "Education Management"
             },
             {
-              "id": "f7ae8803-7003-4448-9313-e17bc523e766",
-              "name": "Events Services"
+              "id": "7d369cb6-bb9a-43c7-ab48-572de52c3713",
+              "option": "E-Learning"
             },
             {
-              "id": "829615fa-a4ab-484e-bdde-0bd5a5ed3fd7",
-              "name": "Executive Office"
+              "id": "97bd3ebe-8e8b-4f47-95f0-590ec5644931",
+              "option": "Electrical/Electronic Manufacturing"
             },
             {
-              "id": "c4ad0fad-455e-4654-9f12-6a4ce75f6df6",
-              "name": "Facilities Services"
+              "id": "5a149046-3557-46b9-b7f4-8eb656773cb9",
+              "option": "Entertainment"
             },
-            { "id": "36eb340d-4edb-4af2-b2de-ab3af9ae9d72", "name": "Farming" },
             {
-              "id": "55a1b3fe-989a-4de2-816a-cd8b55b0bc5e",
-              "name": "Financial Services"
+              "id": "6e4aed6b-a3d5-4f38-ab9c-03288eb4f23e",
+              "option": "Environmental Services"
             },
             {
-              "id": "4ad15f7d-3326-4a87-9872-81d5248c0b99",
-              "name": "Fine Art"
+              "id": "aab6ab0f-8b4f-447d-a1eb-94b7b709f960",
+              "option": "Events Services"
             },
-            { "id": "e4c7bfd5-a575-4211-a0fb-96169412477f", "name": "Fishery" },
             {
-              "id": "83bb4b07-89cd-4fdf-8d2c-bfade9f992aa",
-              "name": "Food & Beverages"
+              "id": "c16790ae-fafb-4ebb-99b6-c4676c3840b0",
+              "option": "Executive Office"
             },
             {
-              "id": "a39b892c-a444-48de-8248-59b1187f6e60",
-              "name": "Food Production"
+              "id": "0546261b-5b43-4784-972f-89b86eea2c03",
+              "option": "Facilities Services"
             },
             {
-              "id": "2df86a68-eea4-4d76-9473-a0fc131bcc79",
-              "name": "Fund-Raising"
+              "id": "be4c9455-ccd6-474a-abb1-52ff68a072a8",
+              "option": "Farming"
             },
             {
-              "id": "a224f9f3-1e9f-49aa-8ca5-81ed0ed6127f",
-              "name": "Furniture"
+              "id": "5f33fe64-d32d-4796-8426-ab478f8cebd8",
+              "option": "Financial Services"
             },
             {
-              "id": "73249332-f4dd-494c-ad74-c7fa80b5e996",
-              "name": "Gambling & Casinos"
+              "id": "c030ab87-e819-400a-a9ae-f689bda65af0",
+              "option": "Fine Art"
             },
             {
-              "id": "52a1941c-1a30-44be-b705-a733ab960345",
-              "name": "Glass, Ceramics & Concrete"
+              "id": "4a97b094-a36c-401d-ae40-881a65e289a4",
+              "option": "Fishery"
             },
             {
-              "id": "a5540984-5e17-4c01-9de5-50ef17486db1",
-              "name": "Government Administration"
+              "id": "5b7826d3-f6e9-4672-be9f-f4a2c2a45172",
+              "option": "Food & Beverages"
             },
             {
-              "id": "915466b0-e0f0-40f2-a681-75c82129eb87",
-              "name": "Government Relations"
+              "id": "1a97182c-1a0f-40a8-a3e1-90918b13a805",
+              "option": "Food Production"
             },
             {
-              "id": "d47f0e96-129f-4b81-9678-2c3428070c50",
-              "name": "Graphic Design"
+              "id": "d0c570b2-5ba1-4c8f-bec9-518489290bf5",
+              "option": "Fund-Raising"
             },
             {
-              "id": "f498e3dc-d5a9-4d59-b925-c5a1fdfaf31b",
-              "name": "Health, Wellness and Fitness"
+              "id": "2a70ab47-265b-47f4-8bf4-b86e97b1ecfb",
+              "option": "Furniture"
             },
             {
-              "id": "a8c1d9cd-5011-4bf2-8c32-cf37a8cec6a7",
-              "name": "Higher Education"
+              "id": "30639b89-9ed3-4344-98a8-b9ac53ac85d0",
+              "option": "Gambling & Casinos"
             },
             {
-              "id": "f9800518-5af1-494f-9e3b-71c37c94a290",
-              "name": "Hospital & Health Care"
+              "id": "25897922-995c-4fc9-aa6f-5a171b97fc9e",
+              "option": "Glass, Ceramics & Concrete"
             },
             {
-              "id": "5f4bdcfb-c07a-4811-861f-02aae07f9c73",
-              "name": "Hospitality"
+              "id": "95d0eca8-8967-43c1-b5c8-2b42316ce12d",
+              "option": "Government Administration"
             },
             {
-              "id": "78bae51d-d008-446f-8b47-9682164c36cc",
-              "name": "Human Resources"
+              "id": "c0c1c2ae-4840-4a2b-a30a-143c52117d8a",
+              "option": "Government Relations"
             },
             {
-              "id": "1f42199c-66be-43e4-9a0e-4fe17cf4872d",
-              "name": "Import and Export"
+              "id": "a42085ff-c691-47fc-8851-d737243f064a",
+              "option": "Graphic Design"
             },
             {
-              "id": "63dc0430-74da-4ba2-b76f-5ff548c5aa3c",
-              "name": "Individual & Family Services"
+              "id": "8cfb4f0c-dd59-4812-9016-6b23d20bf6c9",
+              "option": "Health, Wellness and Fitness"
             },
             {
-              "id": "23b82372-64ad-43f3-bd74-32a34aaec8cd",
-              "name": "Industrial Automation"
+              "id": "dfb8e790-3e4f-4616-b9bc-3b660518cbb0",
+              "option": "Higher Education"
             },
             {
-              "id": "c03f1bf8-9537-49c9-8c2d-419764222f0d",
-              "name": "Information Services"
+              "id": "ac0a8120-873c-4902-8ffd-98047b27008f",
+              "option": "Hospital & Health Care"
             },
             {
-              "id": "a4b3c7f6-5337-460a-ae9b-497e452d62c2",
-              "name": "Information Technology and Services"
+              "id": "6c979962-f316-4116-922e-15792680528c",
+              "option": "Hospitality"
             },
             {
-              "id": "4fcf67b3-e621-4566-b2d4-8becdb0c872d",
-              "name": "Insurance"
+              "id": "6796c767-e1ef-410a-bc39-0e5f2796451a",
+              "option": "Human Resources"
             },
             {
-              "id": "6a758393-f5a4-4be9-b864-bbeace8aa515",
-              "name": "International Affairs"
+              "id": "9b653564-5294-4671-aa3c-e190f3c64ed5",
+              "option": "Import and Export"
             },
             {
-              "id": "abe70c94-2430-4ddd-b60d-7ab720f740dd",
-              "name": "International Trade and Development"
+              "id": "1638ad02-3e4b-4b18-b922-60bf58ede448",
+              "option": "Individual & Family Services"
             },
             {
-              "id": "7656814f-1e51-442a-9740-7064dccae404",
-              "name": "Internet"
+              "id": "b13ed75e-09f4-4973-93fa-5834c4b1a042",
+              "option": "Industrial Automation"
             },
             {
-              "id": "ffaa5a67-bbae-4ae1-adb0-382ab9aeab10",
-              "name": "Investment Banking"
+              "id": "d8b016c6-c3c0-421e-977c-f7182b53495c",
+              "option": "Information Services"
             },
             {
-              "id": "11449e81-7630-4c8c-bf98-71357e848c7d",
-              "name": "Investment Management"
+              "id": "6b59b40f-a9c2-4828-9a27-cad0516573d7",
+              "option": "Information Technology and Services"
             },
             {
-              "id": "67edc410-98b4-414e-af7d-512cd9bbb87e",
-              "name": "Judiciary"
+              "id": "009d258c-5009-44d1-b5c0-55597af1632f",
+              "option": "Insurance"
             },
             {
-              "id": "42d6a16c-5854-4489-99c2-667f8145e9cb",
-              "name": "Law Enforcement"
+              "id": "13df13a2-17a2-4433-8030-db6af36a780f",
+              "option": "International Affairs"
             },
             {
-              "id": "8bfe9219-dcc4-4644-869a-d02f7ac3cb51",
-              "name": "Law Practice"
+              "id": "d2518191-3bcd-437f-a083-c27802979c76",
+              "option": "International Trade and Development"
             },
             {
-              "id": "06aecc35-ab1b-4362-911d-be42b8b77f25",
-              "name": "Legal Services"
+              "id": "639bd75a-41e4-4161-abbc-d8c52682e4d3",
+              "option": "Internet"
             },
             {
-              "id": "93aacdda-f3db-4fe6-a782-0883b49e8184",
-              "name": "Legislative Office"
+              "id": "c79f8541-e78f-475a-a633-4b2140932868",
+              "option": "Investment Banking"
             },
             {
-              "id": "8788a366-ab28-425d-9027-86c882fa4fd2",
-              "name": "Leisure, Travel & Tourism"
+              "id": "e1836f9c-8f46-4f88-ab6e-4ba2316dd267",
+              "option": "Investment Management"
             },
             {
-              "id": "6cabf673-c9b1-4dc8-a19e-f280f67ac885",
-              "name": "Libraries"
+              "id": "44e45a7b-6065-467f-86d3-d40107e66d9c",
+              "option": "Judiciary"
             },
             {
-              "id": "222152cd-0463-4346-a405-c7f7dda3986f",
-              "name": "Logistics and Supply Chain"
+              "id": "57d92086-0638-47aa-b229-30314777b796",
+              "option": "Law Enforcement"
             },
             {
-              "id": "8f447981-d9c1-47de-91b1-9ad78132e9ff",
-              "name": "Luxury Goods & Jewelry"
+              "id": "c789d6e5-8f74-4d4c-8b59-489031ef91fa",
+              "option": "Law Practice"
             },
             {
-              "id": "bb89bd2f-6eb5-418f-ac64-aaf3dfbdfdf0",
-              "name": "Machinery"
+              "id": "cbe50261-97ba-4743-bbf9-930f0a08532e",
+              "option": "Legal Services"
             },
             {
-              "id": "e0ddf9e6-a166-4afe-918c-498fdf8af1d8",
-              "name": "Management Consulting"
+              "id": "9ec4e797-4b49-4222-a314-5d61816b7fd9",
+              "option": "Legislative Office"
             },
             {
-              "id": "0768bb35-2872-4324-b953-b92142fb9d95",
-              "name": "Maritime"
+              "id": "3b54a5ff-0729-42fb-8f01-8c03bddea68c",
+              "option": "Leisure, Travel & Tourism"
             },
             {
-              "id": "7abe962f-ee13-4712-a23e-4ed8fa4b9efc",
-              "name": "Marketing and Advertising"
+              "id": "e55d8246-9e5e-4050-9970-ed22c58bb7ef",
+              "option": "Libraries"
             },
             {
-              "id": "ce447ced-0c44-4fe3-ae4b-808e23c05b82",
-              "name": "Market Research"
+              "id": "80bb1b08-140f-4c7e-b9ac-28e2caae80c0",
+              "option": "Logistics and Supply Chain"
             },
             {
-              "id": "1be1a423-41b2-4529-a2ed-c1326a1b97b4",
-              "name": "Mechanical or Industrial Engineering"
+              "id": "6c58169f-2f6c-455a-b712-e984211337ce",
+              "option": "Luxury Goods & Jewelry"
             },
             {
-              "id": "ce9e3170-f007-43ab-a4b2-9534350051e5",
-              "name": "Media Production"
+              "id": "671bd522-4383-4238-8f91-87d08eb7d6a0",
+              "option": "Machinery"
             },
             {
-              "id": "60158673-9c4a-4a20-a6c3-fa4b0d9f071a",
-              "name": "Medical Devices"
+              "id": "840d85c3-b80a-4564-ac15-c999f1879fa6",
+              "option": "Management Consulting"
             },
             {
-              "id": "b2a06ea9-7a60-4010-a632-e0b79915153b",
-              "name": "Medical Practice"
+              "id": "5e82f162-152c-46d2-8498-92b688d452f4",
+              "option": "Maritime"
             },
             {
-              "id": "907e6d71-771b-403a-9c33-7675d251c0e9",
-              "name": "Mental Health Care"
+              "id": "2833f485-f91e-449d-8105-3fdf89feb53d",
+              "option": "Marketing and Advertising"
             },
             {
-              "id": "ba1e27b9-4c37-471c-a255-a17defd6124b",
-              "name": "Military"
+              "id": "bb69f7a5-1f85-4c98-ae35-49cb8d4332c2",
+              "option": "Market Research"
             },
             {
-              "id": "0e5048d5-771c-417d-8cf2-eb0620c0a3dd",
-              "name": "Mining & Metals"
+              "id": "955163c6-167a-4d28-93bc-af47948930af",
+              "option": "Mechanical or Industrial Engineering"
             },
             {
-              "id": "a8443889-2a22-46e0-a3a9-b9b4e732ca60",
-              "name": "Motion Pictures and Film"
+              "id": "7acd08f3-c702-474a-9abc-abea3647abb8",
+              "option": "Media Production"
             },
             {
-              "id": "5020bb4d-13be-4771-81b0-4ceeabf84f44",
-              "name": "Museums and Institutions"
+              "id": "20b411fc-4401-468b-ad69-99a57f1e3935",
+              "option": "Medical Devices"
             },
-            { "id": "d4a030cd-c786-4835-93f0-5a35b19d7ac6", "name": "Music" },
             {
-              "id": "f3cfebbe-71a4-4fc8-9480-311813a4d84b",
-              "name": "Nanotechnology"
+              "id": "6c01795f-cf3b-4692-be33-d75af159680b",
+              "option": "Medical Practice"
             },
             {
-              "id": "e0d23fa6-d9f0-4f62-98b6-c238b4353940",
-              "name": "Newspapers"
+              "id": "54f36e95-054b-4a19-9449-e74d1b4214e8",
+              "option": "Mental Health Care"
             },
             {
-              "id": "c96fcb97-0d3f-4993-903b-bd1875c60aeb",
-              "name": "Nonprofit Organization Management"
+              "id": "82b42a54-3f53-45d3-b06c-6a32ff179aab",
+              "option": "Military"
             },
             {
-              "id": "56112595-1c5f-4320-9b16-57a8d0e6a20a",
-              "name": "Oil & Energy"
+              "id": "9b0d838a-0252-44be-bdc7-f88374bbdaaf",
+              "option": "Mining & Metals"
             },
             {
-              "id": "b74f04a1-19ab-4c8f-ab5c-22aeed023f5b",
-              "name": "Online Media"
+              "id": "c7f73aaf-906e-4c70-a4b3-5910e49c7d01",
+              "option": "Motion Pictures and Film"
             },
             {
-              "id": "ae3d24f8-22b2-4806-825f-21ffdfaefe43",
-              "name": "Outsourcing/Offshoring"
+              "id": "fc1388c5-c01a-49ec-9fc5-7cfde6a8f880",
+              "option": "Museums and Institutions"
             },
+            { "id": "df0efff6-1ca9-4d82-8d18-a7877878af2e", "option": "Music" },
             {
-              "id": "4f34b013-b474-4152-b5f3-511b1fe00ae0",
-              "name": "Package/Freight Delivery"
+              "id": "ef11f9fb-c42a-4186-b6df-3f4ae9ab5cdc",
+              "option": "Nanotechnology"
             },
             {
-              "id": "04969dfe-fff5-41ed-9ab6-5cc6be055ac3",
-              "name": "Packaging and Containers"
+              "id": "88974e50-26c1-4cf3-b974-e34370f58728",
+              "option": "Newspapers"
             },
             {
-              "id": "1c5289d4-cb2c-44fa-85e0-40663c294ee4",
-              "name": "Paper & Forest Products"
+              "id": "7b7cb46b-a78e-40e8-b68e-182f16a31c66",
+              "option": "Nonprofit Organization Management"
             },
             {
-              "id": "675eb907-b55d-4a07-93f2-3a63c3b46378",
-              "name": "Performing Arts"
+              "id": "26e96d41-7e97-452d-bb71-11e0cd6f4869",
+              "option": "Oil & Energy"
             },
             {
-              "id": "8bd60d1f-277e-43a3-b3ef-33ff87ee4dd5",
-              "name": "Pharmaceuticals"
+              "id": "eeb319d4-61fe-47f0-8b3f-1797dd4f3508",
+              "option": "Online Media"
             },
             {
-              "id": "149684da-a827-4096-b553-228bf344f6d7",
-              "name": "Philanthropy"
+              "id": "1ba515d9-030b-410c-ba9e-115710e975d0",
+              "option": "Outsourcing/Offshoring"
             },
             {
-              "id": "e4dac78f-14ce-43a2-9861-aa3b97725965",
-              "name": "Photography"
+              "id": "bb91d0cc-04d4-465c-bb9f-cd65792d7050",
+              "option": "Package/Freight Delivery"
             },
             {
-              "id": "cd0fec9f-0197-4e95-9ca4-a9d5526b741e",
-              "name": "Plastics"
+              "id": "d05e945f-acea-40f3-afb5-b9cb332075cd",
+              "option": "Packaging and Containers"
             },
             {
-              "id": "40ae3249-6ad4-4f3f-981c-b6fd877405b0",
-              "name": "Political Organization"
+              "id": "0e515269-0775-48d4-860e-79cc23b620fc",
+              "option": "Paper & Forest Products"
             },
             {
-              "id": "157c1625-88d8-42d1-93ad-0c9902165d28",
-              "name": "Primary/Secondary Education"
+              "id": "17d431e4-8e7d-48c8-a795-37e3a7a83834",
+              "option": "Performing Arts"
             },
             {
-              "id": "83689e87-eac9-4519-9a24-d3ef2f301cf7",
-              "name": "Printing"
+              "id": "b7c84c75-7e1b-4ac1-b2f9-b2bea679cd7b",
+              "option": "Pharmaceuticals"
             },
             {
-              "id": "a361a9b2-0394-4b3d-96ce-e21fd3e78df4",
-              "name": "Professional Training & Coaching"
+              "id": "04fedec4-b595-4b76-8552-f725b3c5a9eb",
+              "option": "Philanthropy"
             },
             {
-              "id": "40ed16da-1f4d-46b3-b129-af98a55e08b8",
-              "name": "Program Development"
+              "id": "a8b15d24-3dc9-48da-ad07-ee7ae22307e9",
+              "option": "Photography"
             },
             {
-              "id": "d246c4e2-b21d-48d3-bfb7-2c87050ad178",
-              "name": "Public Policy"
+              "id": "a2cb076e-3b6f-4c9e-a1aa-277c82447784",
+              "option": "Plastics"
             },
             {
-              "id": "fa18a486-9176-49c7-a59f-3bd62e526738",
-              "name": "Public Relations and Communications"
+              "id": "f8cf3271-74fc-4b46-baa2-0b0bd0c20dad",
+              "option": "Political Organization"
             },
             {
-              "id": "c953f6e9-ed62-4a68-a053-37b17cd7f3d5",
-              "name": "Public Safety"
+              "id": "9b0fdcd3-065b-4fe5-a698-b3238590e74e",
+              "option": "Primary/Secondary Education"
             },
             {
-              "id": "8e1d809c-9fad-47e3-974b-cd27cd49935d",
-              "name": "Publishing"
+              "id": "5d9ff625-9c6b-42dc-8403-eaf0c4b802b9",
+              "option": "Printing"
             },
             {
-              "id": "dd100c0f-5525-46de-8227-fc4a1cc743d3",
-              "name": "Railroad Manufacture"
+              "id": "7bcc7ae7-b6fb-4f16-931d-5a34f27ef435",
+              "option": "Professional Training & Coaching"
             },
             {
-              "id": "a65fa505-f2bc-402e-a340-27f6cb478dac",
-              "name": "Ranching"
+              "id": "6204c1fd-75db-498e-9393-c9282e3f222b",
+              "option": "Program Development"
             },
             {
-              "id": "d460745e-fd2d-4391-b875-5036564a54c4",
-              "name": "Real Estate"
+              "id": "ff79e8ca-21e8-40d9-9493-ba913bd2077d",
+              "option": "Public Policy"
             },
             {
-              "id": "ef891ebf-2d95-4c22-9030-e861db887bfc",
-              "name": "Recreational Facilities and Services"
+              "id": "72f25a0b-d383-4609-8eeb-d35fc8be7dde",
+              "option": "Public Relations and Communications"
             },
             {
-              "id": "38c6e9e4-281f-40e4-aa36-85f2a559dbc8",
-              "name": "Religious Institutions"
+              "id": "5d4ef0a2-9376-4f90-8ff8-08e93882905e",
+              "option": "Public Safety"
             },
             {
-              "id": "474dc3fe-8d7c-40ea-bf5e-4aae694d76e6",
-              "name": "Renewables & Environment"
+              "id": "b1a40eef-2292-4641-bf66-2ac243563849",
+              "option": "Publishing"
             },
             {
-              "id": "d87bd979-ac9e-4f3b-a790-116d326ae4ba",
-              "name": "Research"
+              "id": "d0990a76-79b0-4215-9207-e49888356bfb",
+              "option": "Railroad Manufacture"
             },
             {
-              "id": "0ab8d7b3-c041-4fca-8c87-15ba6e368b19",
-              "name": "Restaurants"
+              "id": "f570f2bf-06ae-4c65-9f36-49a9c55b8c92",
+              "option": "Ranching"
             },
-            { "id": "9c0c20c3-e1c2-4fe7-b280-6993813255e6", "name": "Retail" },
             {
-              "id": "e14401a2-0f4f-4c47-a2f6-6317016082ad",
-              "name": "Security and Investigations"
+              "id": "c6d0042a-5476-4557-b94a-5bc5315de6c1",
+              "option": "Real Estate"
             },
             {
-              "id": "a2720ae1-acc5-4cea-bacf-73e61f66c3e6",
-              "name": "Semiconductors"
+              "id": "b32ccd10-a57c-43c9-a98f-a4cb5b003d97",
+              "option": "Recreational Facilities and Services"
             },
             {
-              "id": "69683873-ed9d-4d10-a53c-ce4d53c4e756",
-              "name": "Shipbuilding"
+              "id": "a3048c44-cdc8-4bc6-bb5b-8b3df6e0fa3e",
+              "option": "Religious Institutions"
             },
             {
-              "id": "0ff61520-4418-4a64-8721-c299ab99b3e9",
-              "name": "Sporting Goods"
+              "id": "28520fa0-c312-4f4b-bf17-21139f2ed0b7",
+              "option": "Renewables & Environment"
             },
-            { "id": "4afad797-f3c7-4e81-bb32-29b40047d0e1", "name": "Sports" },
             {
-              "id": "1056463c-be4a-4a7a-9a24-bd7e4722792c",
-              "name": "Staffing and Recruiting"
+              "id": "0710d770-4b3a-47a8-bd04-06ec3fca3b67",
+              "option": "Research"
             },
             {
-              "id": "61070308-3449-44b1-ae01-b324061817c2",
-              "name": "Supermarkets"
+              "id": "65fb5921-9d00-404e-b5bd-541b66e2cfa9",
+              "option": "Restaurants"
             },
             {
-              "id": "0e0b10a9-837a-43f4-84fb-1e17d3e1d80e",
-              "name": "Telecommunications"
+              "id": "3ad88439-4714-4b53-b2d8-8dd9ae0b8f5a",
+              "option": "Retail"
             },
             {
-              "id": "5b494560-1cc3-4561-bcde-e9572d598394",
-              "name": "Textiles"
+              "id": "827c0f00-408b-4277-9696-d0ddaf1e4725",
+              "option": "Security and Investigations"
             },
             {
-              "id": "88ebfefb-39ec-411f-980f-4a318b0d8403",
-              "name": "Think Tanks"
+              "id": "ef4eb306-6b4d-4e7c-818d-2aea08b1ef02",
+              "option": "Semiconductors"
             },
-            { "id": "0be667ca-0eec-4643-9c24-0d11bc620822", "name": "Tobacco" },
             {
-              "id": "ae170b7e-7ea9-429e-8c72-5ea457b772ce",
-              "name": "Translation and Localization"
+              "id": "54da63f8-980b-49f4-ad3e-60ec51f2f173",
+              "option": "Shipbuilding"
             },
             {
-              "id": "5c7f4555-5641-4866-a814-192975fce68b",
-              "name": "Transportation/Trucking/Railroad"
+              "id": "86270ec1-f8c8-4b18-9707-6adb5f8a16bf",
+              "option": "Sporting Goods"
             },
             {
-              "id": "ec629536-f0b3-4110-a50b-a79a0020f08d",
-              "name": "Utilities"
+              "id": "34e08449-8fcd-49d9-b881-b08ebc216323",
+              "option": "Sports"
             },
             {
-              "id": "720a55cd-f6ae-4331-8784-61fb713272ea",
-              "name": "Venture Capital & Private Equity"
+              "id": "8f4fda32-e4d9-4d94-bb3d-97599a08ae07",
+              "option": "Staffing and Recruiting"
             },
             {
-              "id": "e392a967-922b-4beb-a467-e2951b09efee",
-              "name": "Veterinary"
+              "id": "f7f550cd-8c48-4193-9a16-80d6b9fef81b",
+              "option": "Supermarkets"
             },
             {
-              "id": "d700fc03-0d01-49b3-9d70-852254436982",
-              "name": "Warehousing"
+              "id": "e5d80c31-023b-4e61-8a28-bdad29816087",
+              "option": "Telecommunications"
             },
             {
-              "id": "72773129-a836-4300-9f25-9845b584abb1",
-              "name": "Wholesale"
+              "id": "8c3cf737-103d-41b9-bea6-a079ecc5ebc4",
+              "option": "Textiles"
             },
             {
-              "id": "243eb764-735e-456d-9a4a-541f1bedb2a4",
-              "name": "Wine and Spirits"
+              "id": "f7793a4b-d76d-4c35-9705-4f6981a77dd4",
+              "option": "Think Tanks"
             },
             {
-              "id": "1bdcaa91-e571-4c64-8815-00d9c12b60df",
-              "name": "Wireless"
+              "id": "8001639a-f456-4d49-b37a-d0c3d398a70d",
+              "option": "Tobacco"
             },
             {
-              "id": "a89b8e97-a274-4967-8d2d-becc3d29c7a0",
-              "name": "Writing and Editing"
+              "id": "c2cac1c2-6241-4cd9-b1f9-880f14c7ea62",
+              "option": "Translation and Localization"
+            },
+            {
+              "id": "a1c0f3e8-8c50-4fb3-8400-2d795163f533",
+              "option": "Transportation/Trucking/Railroad"
+            },
+            {
+              "id": "50eb886c-b2a7-4759-9fc1-79a59de838f0",
+              "option": "Utilities"
+            },
+            {
+              "id": "287bd7a1-5ea9-43ce-9b43-c0c4b9d1364a",
+              "option": "Venture Capital & Private Equity"
+            },
+            {
+              "id": "5f8713ac-0a3f-4ef0-be94-e1b7b936489d",
+              "option": "Veterinary"
+            },
+            {
+              "id": "4a27a1f1-ba42-47a0-b918-4d744664e568",
+              "option": "Warehousing"
+            },
+            {
+              "id": "0629c5f5-42a6-4d16-9b4b-d63abdf2b413",
+              "option": "Wholesale"
+            },
+            {
+              "id": "e1a48ad1-5515-43ad-8f51-b305d411da6e",
+              "option": "Wine and Spirits"
+            },
+            {
+              "id": "3b249cec-4a16-4235-88f0-9dae830750f5",
+              "option": "Wireless"
+            },
+            {
+              "id": "b7899edd-1022-4079-b685-d54e6917c42d",
+              "option": "Writing and Editing"
             }
           ]
         },
-        "error": {
-          "empty": "Oops! Please make a selection",
-          "unknown input": "Oops! Please make a selection"
-        }
+        "checks": { "required": true, "shouldBeAnOption": true }
       },
-      "id": "d21b75a3-517d-407b-bb60-24e3a045ef92"
+      "id": "c8930dc9-0b17-4565-ba54-040ec7387a21"
     },
     {
       "question": "Your role in your company?",
@@ -625,14 +648,27 @@
       "userinput": {
         "type": "radio",
         "inputConfig": {
-          "required": true,
           "name": "Role",
-          "options": ["Founder or CXO", "Product team", "Product team", "VC"],
+          "options": [
+            {
+              "id": "7c9eb03f-e23a-48bd-aeee-3b5beea57fff",
+              "option": "Founder or CXO"
+            },
+            {
+              "id": "0997791d-247a-413b-892a-5a74227c155c",
+              "option": "Product team"
+            },
+            {
+              "id": "f01b8cc1-3193-4797-9c8f-3481ba81cb8b",
+              "option": "Product team"
+            },
+            { "id": "50f1c2c5-7a08-446e-b4db-19eee0038aa1", "option": "VC" }
+          ],
           "others": true
         },
-        "error": null
+        "checks": { "required": true, "choose": 1 }
       },
-      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
+      "id": "f4268ad7-9c62-425d-932d-07bf4fec5ba1"
     },
     {
       "question": "$1, what's your professional goal for the next 12 months?",
@@ -641,17 +677,81 @@
       "userinput": {
         "type": "checkbox",
         "inputConfig": {
-          "required": true,
           "name": "Professional Goal",
-          "options": ["Founder or CXO", "Product team", "Product team", "VC"],
-          "choose": 2
+          "options": {
+            "Founder or CXO": [
+              {
+                "id": "7d035e71-c1cc-46a2-badc-c90f66034672",
+                "option": "Connect with like-minded people"
+              },
+              {
+                "id": "3caf8c53-635d-40b1-bdc3-1bce293624f6",
+                "option": "Structured approach to growth"
+              },
+              {
+                "id": "82147e8a-3d48-4efc-ba83-41df18cc0725",
+                "option": "Build a growth team"
+              }
+            ],
+            "all": [
+              {
+                "id": "0f9a5d94-2e1c-458d-a818-be384d465f20",
+                "option": "Get hired"
+              },
+              {
+                "id": "ad6c90c9-9e05-47fb-9512-cb99721784b3",
+                "option": "Get Promoted"
+              },
+              {
+                "id": "6eb41eec-22dd-4bed-8150-1192589fda58",
+                "option": "Connect with like-minded people"
+              },
+              {
+                "id": "2ee9d568-9b4c-4045-8360-eb366b1f5437",
+                "option": "Structured approach to growth"
+              },
+              {
+                "id": "ab351fec-85b2-4fdb-a0db-e59763be450f",
+                "option": "Build a growth team"
+              }
+            ]
+          },
+          "others": false
         },
-        "error": {
-          "empty": "Oops! Please make a selection",
-          "more choices": "Oops! Please make a selection"
-        }
+        "checks": { "required": true, "choose": 2 }
       },
-      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
+      "id": "bf108a4b-959e-4fe1-8a70-35ec396438a4"
+    },
+    {
+      "question": "Email you'd like to register with?This question is required. ",
+      "variables": null,
+      "caption": "<span>We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.</span><br><br><em>[ </em><span>🔴</span><em>DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. ]</em>",
+      "userinput": {
+        "type": "input",
+        "inputConfig": {
+          "placeholder": "name@example.com",
+          "name": "Email",
+          "type": "email"
+        },
+        "checks": { "required": true, "email": true }
+      },
+      "id": "f93e24f6-7c07-4d8a-9fe8-e3560ad2cbd6"
+    },
+    {
+      "question": "Your phone number",
+      "variables": null,
+      "caption": "We won't call you unless it is absolutely required to process your application.",
+      "userinput": {
+        "type": "input",
+        "inputConfig": {
+          "placeholder": "081234 56789",
+          "name": "Phone",
+          "type": "number",
+          "withCountryCode": true
+        },
+        "checks": { "required": true }
+      },
+      "id": "dbfb7a01-4df1-470b-82f5-5815a62da4cd"
     }
   ]
 }

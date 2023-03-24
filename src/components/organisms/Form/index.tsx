@@ -6,9 +6,10 @@ import { Entries } from './Entries';
 import { Progressbar } from './Progressbar';
 import { useFormControls } from './useFormControls';
 
-export interface FormProps<TOnboard, TQuestions> {
+export interface FormProps<TOnboard, TQuestions, TState> {
   children: JSX.Element[];
   payload: ApiResponse<TOnboard, TQuestions>['data'];
+  initialState: TState;
 }
 
 export interface FormStepProps {
@@ -17,29 +18,28 @@ export interface FormStepProps {
   handleIncrement: () => void;
 }
 
-export type FormContextProps<TOnboard, TQuestions> = FormStepProps &
-  FormProps<TOnboard, TQuestions>['payload'];
+export type FormContextProps<TOnboard, TQuestions, TState> = FormStepProps &
+  FormProps<TOnboard, TQuestions, TState>['payload'];
 
-const createStateContext = once(<TOnboard, TQuestions>() =>
-  createContext({} as FormContextProps<TOnboard, TQuestions>)
+const createStateContext = once(<TOnboard, TQuestions, TState>() =>
+  createContext({} as FormContextProps<TOnboard, TQuestions, TState>)
 );
 
-const Root = <TOnboard, TQuestions>({
+const Root = <TOnboard, TQuestions, TState>({
   children,
-  payload,
-}: FormProps<TOnboard, TQuestions>) => {
-  const FormContext = createStateContext<TOnboard, TQuestions>();
-  const [reactiveState, setReactiveState] = useState(payload.questions);
-
+  payload: { onboarding, questions },
+}: FormProps<TOnboard, TQuestions, TState>) => {
+  const FormContext = createStateContext<TOnboard, TQuestions, TState>();
   const { formStep, handleDecrement, handleIncrement } = useFormControls(
-    children.length
+    questions.length + 1
   );
+  const [state, setState] = useState({} as TState);
 
   return (
     <FormContext.Provider
       value={{
-        onboarding: payload.onboarding,
-        questions: reactiveState,
+        onboarding,
+        questions,
         step: formStep,
         handleDecrement,
         handleIncrement,
@@ -52,8 +52,10 @@ const Root = <TOnboard, TQuestions>({
   );
 };
 
-export const useFormContext = <TOnboard, TQuestions>() => {
-  const context = useContext(createStateContext<TOnboard, TQuestions>());
+export const useFormContext = <TOnboard, TQuestions, TState>() => {
+  const context = useContext(
+    createStateContext<TOnboard, TQuestions, TState>()
+  );
   if (!context) throw new Error(`Context couldn't be found!`);
   return context;
 };

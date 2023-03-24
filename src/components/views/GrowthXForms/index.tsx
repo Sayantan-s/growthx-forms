@@ -7,15 +7,16 @@ export const GrowthXForms = ({
 }: ApiResponse<OnboardingType, QnaType>) => {
   return (
     <Main>
-      <Form payload={data}>
+      <Form payload={data} initialState={{ name: '' }}>
         <Form.Progressbar />
         <Form.Entries>
-          <Form.Entries.Onboarding>
-            {({ onboarding: ob, handleIncrement }) => {
-              const onboarding = ob as OnboardingType;
-              return (
-                <div>
-                  <Form.Entries.Heading fontSize="4">
+          {({ onboarding: ob, questions: content, handleIncrement }) => {
+            const onboarding = ob as OnboardingType;
+            const formContent = content as QnaType[];
+            return (
+              <Form.Entries.Panels>
+                <Form.Entries.Onboarding>
+                  <Form.Entries.Heading fontSize="3">
                     {onboarding.heading}
                   </Form.Entries.Heading>
                   <Form.Entries.Descriptor>
@@ -24,12 +25,25 @@ export const GrowthXForms = ({
                   <Form.Entries.Button onClick={handleIncrement}>
                     {onboarding.buttonText}
                   </Form.Entries.Button>
-                </div>
-              );
-            }}
-          </Form.Entries.Onboarding>
-          <Form.Entries.Panel>Panel</Form.Entries.Panel>
-          <Form.Entries.Panel>Panel</Form.Entries.Panel>
+                </Form.Entries.Onboarding>
+                <Form.Entries.DataInput>
+                  {formContent.map((content, index) => (
+                    <Form.Entries.Panel key={content.id} step={index + 1}>
+                      <Form.Entries.Heading fontSize="3">
+                        {content.question}
+                      </Form.Entries.Heading>
+                      <Form.Entries.Descriptor>
+                        {content.caption}
+                      </Form.Entries.Descriptor>
+                      <Form.Entries.Button onClick={handleIncrement}>
+                        OK
+                      </Form.Entries.Button>
+                    </Form.Entries.Panel>
+                  ))}
+                </Form.Entries.DataInput>
+              </Form.Entries.Panels>
+            );
+          }}
         </Form.Entries>
       </Form>
     </Main>

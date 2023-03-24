@@ -1,27 +1,15 @@
 import { View } from '@/components/atoms';
-import { FormProps, FormStepProps, useFormContext } from '..';
+import { useFormContext } from '..';
 
-export interface Props<TOnboard, TQuestions> {
-  children: (
-    props: Pick<FormProps<TOnboard, TQuestions>['payload'], 'onboarding'> &
-      FormStepProps
-  ) => JSX.Element;
+export interface Props {
+  children: React.ReactNode;
 }
 
-const Root = <TOnboard, TQuestions>({
-  children,
-}: Props<TOnboard, TQuestions>) => {
-  const { onboarding, step, handleDecrement, handleIncrement } = useFormContext<
-    TOnboard,
-    TQuestions
-  >();
-  return (
-    <View>
-      {children({ onboarding, step, handleDecrement, handleIncrement })}
-    </View>
-  );
+const Root = ({ children }: Props) => {
+  const { step: formStep } = useFormContext();
+  return formStep === 0 ? <View>{children}</View> : null;
 };
 
-Root.displayName = 'Form.Onboarding';
+Root.displayName = 'Form.Entries.Onboarding';
 
 export const Onboarding = Object.assign(Root, {});

@@ -1,11 +1,20 @@
-import { PropsWithChildren, forwardRef } from 'react';
+import { forwardRef } from 'react';
+import { useFormContext } from '..';
 
-export const Root = forwardRef<HTMLDivElement, PropsWithChildren>(
-  function Panel({ children }, ref) {
-    return <div ref={ref}>{children}</div>;
-  }
-);
+interface Props {
+  children: JSX.Element[];
+  step: number;
+}
 
-export const Panel = Object.assign(Root, {});
+// Step should'nt be Zero!
 
-Panel.displayName = 'Form.Panel';
+export const Panel = forwardRef<HTMLDivElement, Props>(function Panel(
+  { children, step },
+  ref
+) {
+  const { step: formStep } = useFormContext();
+
+  return formStep === step ? <div ref={ref}>{children}</div> : null;
+});
+
+Panel.displayName = 'Form.Entries.Panel';

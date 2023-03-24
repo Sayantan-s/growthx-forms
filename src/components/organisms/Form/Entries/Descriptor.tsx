@@ -10,19 +10,19 @@ type FilteredTextProps = Omit<
 >;
 
 interface Props extends FilteredTextProps {
-  children: string;
+  children: string | null;
 }
 
 export const Descriptor = forwardRef<HTMLParagraphElement, Props>(
   ({ children, ...rest }, ref) => {
-    return (
+    return children ? (
       <EntryDescriptor
         {...rest}
         as="p"
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(children) }}
         ref={ref}
       />
-    );
+    ) : null;
   }
 );
 
