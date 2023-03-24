@@ -15,7 +15,9 @@ export const GrowthXForms = ({
               const onboarding = ob as OnboardingType;
               return (
                 <div>
-                  <h1>{onboarding.heading}</h1>
+                  <Form.Entries.Heading fontSize="4">
+                    {onboarding.heading}
+                  </Form.Entries.Heading>
                   <Form.Entries.Descriptor>
                     {onboarding.description}
                   </Form.Entries.Descriptor>

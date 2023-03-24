@@ -1,3 +1,4 @@
+import { View } from '@/components/atoms';
 import { FormProps, FormStepProps, useFormContext } from '..';
 
 export interface Props<TOnboard, TQuestions> {
@@ -15,9 +16,9 @@ const Root = <TOnboard, TQuestions>({
     TQuestions
   >();
   return (
-    <div>
+    <View>
       {children({ onboarding, step, handleDecrement, handleIncrement })}
-    </div>
+    </View>
   );
 };
 

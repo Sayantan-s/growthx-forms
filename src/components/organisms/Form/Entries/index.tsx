@@ -1,3 +1,4 @@
+import { Text as Heading, View } from '@/components/atoms';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -24,12 +25,15 @@ const Root: FC<Props> = ({ children }) => {
 
 Onboarding.displayName = 'Form.Entries.Onboarding';
 Panel.displayName = 'Form.Entries.Panel';
+Heading.displayName = 'Form.Entries.Heading';
+View.displayName = 'Form.Entries.';
 
 export const Entries = Object.assign(Root, {
   Onboarding,
   Panel,
   Button,
   Descriptor,
+  Heading,
 });
 
 const GrowthXEntry = styled(motion.div)`

@@ -16,6 +16,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: Record<'red' | 'black' | 'blue', Record<Strength, string>>;
     fontSize: Record<`${number}`, `${number}rem`>;
+    spacing: Record<`${number}`, `${number}rem`>;
     fontWeights: {
       body: 400;
       heading: 700;

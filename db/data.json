@@ -6,11 +6,652 @@
   },
   "questions": [
     {
-      "question": "Up-skilling requires time commitment",
-      "caption": "<span>The GrowthX experience is designed by keeping in mind the working hours founders &amp; full time operators typically work in.</span><br><br><span>You will spend</span><br><span>- 6 hours/week for the first 5 weeks </span><br><span>- 15 hours/week for the last 3 weeks </span>",
+      "question": "What's your first name?",
+      "variables": null,
+      "caption": null,
       "userinput": {
-        "type": "input"
-      }
+        "type": "input",
+        "inputConfig": {
+          "placeholder": "Type your answer here...",
+          "required": true,
+          "name": "First Name"
+        },
+        "error": { "empty": "Please fill this in" }
+      },
+      "id": "4c6935f6-2672-4ff5-a6d8-f4df3bd4ce4c"
+    },
+    {
+      "question": "and your last name, $1?",
+      "variables": ["First Name"],
+      "caption": null,
+      "userinput": {
+        "type": "input",
+        "inputConfig": {
+          "placeholder": "Type your answer here...",
+          "required": true,
+          "name": "Last Name"
+        },
+        "error": { "empty": "Please fill this in" }
+      },
+      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
+    },
+    {
+      "question": "What industry is your company in?",
+      "variables": null,
+      "caption": "We will personalize your learning experience accordingly",
+      "userinput": {
+        "type": "datalist",
+        "inputConfig": {
+          "placeholder": "Type or select an option",
+          "required": true,
+          "name": "Industry of Company",
+          "options": [
+            {
+              "id": "44694da9-477d-472b-928e-98e6b9a9d1bd",
+              "name": "Accounting"
+            },
+            {
+              "id": "325f56b3-5395-4f23-9c17-18d2055c6864",
+              "name": "Airlines/Aviation"
+            },
+            {
+              "id": "fb0d0521-995f-489d-baa9-2bad3366457a",
+              "name": "Alternative Dispute Resolution"
+            },
+            {
+              "id": "9b4044f1-32aa-4845-bba3-48efb3c53e97",
+              "name": "Alternative Medicine"
+            },
+            {
+              "id": "71ade5fe-6226-4652-8799-1ce4a49bdbcd",
+              "name": "Animation"
+            },
+            {
+              "id": "a90e1229-b6c1-4f1c-b0e4-61511ce1fe3f",
+              "name": "Apparel & Fashion"
+            },
+            {
+              "id": "64ea9817-f032-4c48-b64f-207d893d2162",
+              "name": "Architecture & Planning"
+            },
+            {
+              "id": "22ee9d26-6be9-4cef-b818-2f07707ceaaa",
+              "name": "Arts and Crafts"
+            },
+            {
+              "id": "59a80883-1980-482c-8808-85d6da89070e",
+              "name": "Automotive"
+            },
+            {
+              "id": "1843dc96-2260-4ec8-9803-0dca15144860",
+              "name": "Aviation & Aerospace"
+            },
+            { "id": "4f6b451f-ecd7-4888-8042-d6d51b3ba52e", "name": "Banking" },
+            {
+              "id": "7aeeb43d-3683-4d5c-93c5-9939c1f13c80",
+              "name": "Biotechnology"
+            },
+            {
+              "id": "acd7f8ed-865e-46b8-89cc-6f633b420333",
+              "name": "Broadcast Media"
+            },
+            {
+              "id": "72f120ce-622a-49fe-8130-2337d616caf2",
+              "name": "Building Materials"
+            },
+            {
+              "id": "7ae41755-82f4-4467-ac94-b62f732598fa",
+              "name": "Business Supplies and Equipment"
+            },
+            {
+              "id": "3687f999-78c9-435e-ad74-d5121a3e4f36",
+              "name": "Capital Markets"
+            },
+            {
+              "id": "d1f4f538-770f-4d32-af31-ae60873c3046",
+              "name": "Chemicals"
+            },
+            {
+              "id": "d8afdd68-3b49-4b20-b77d-b380fef74fe6",
+              "name": "Civic & Social Organization"
+            },
+            {
+              "id": "11c2532c-15b3-4b81-8d04-ee3232bb4fa7",
+              "name": "Civil Engineering"
+            },
+            {
+              "id": "b28bcb0f-75d6-4704-b5f9-268c8a6ef8fb",
+              "name": "Commercial Real Estate"
+            },
+            {
+              "id": "d3a2fdc9-e512-4b75-9db8-a6cc2310eca7",
+              "name": "Computer & Network Security"
+            },
+            {
+              "id": "44c80f15-be10-434d-b8a7-978149a9c8b4",
+              "name": "Computer Games"
+            },
+            {
+              "id": "e7c1a5d1-591a-4168-8858-1d1322a1ded5",
+              "name": "Computer Hardware"
+            },
+            {
+              "id": "c8ecc6b8-83fb-4bab-87f0-6507d778e6f7",
+              "name": "Computer Networking"
+            },
+            {
+              "id": "12f0b3ea-b90a-4d14-882b-dcd1d37d9459",
+              "name": "Computer Software"
+            },
+            {
+              "id": "6c29fac3-7476-4d17-9268-681fd883d4c6",
+              "name": "Construction"
+            },
+            {
+              "id": "5835fddb-ea49-4889-8417-10e7eeaf5651",
+              "name": "Consumer Electronics"
+            },
+            { "id": "0215b515-403d-4497-876a-24ec0ac11268", "name": "Crypto" },
+            {
+              "id": "d0fda1d8-c868-40a0-9701-e38b51de2973",
+              "name": "Consumer Goods"
+            },
+            {
+              "id": "342a8544-a6da-48dd-a6d2-7a00477e0130",
+              "name": "Consumer Services"
+            },
+            {
+              "id": "c15a5006-200c-4411-aa16-484b90214b13",
+              "name": "Cosmetics"
+            },
+            { "id": "9455518b-eb1b-40d0-bb00-8500e232bfc0", "name": "Dairy" },
+            {
+              "id": "5582b065-a5b9-45ef-b9d8-5c16e862af7b",
+              "name": "Defense & Space"
+            },
+            { "id": "9183665c-1871-4a37-a05b-87d74b603f99", "name": "Design" },
+            { "id": "6f38cb6b-a74d-4ca1-b790-67b0c76501e1", "name": "Edtech" },
+            {
+              "id": "8153bded-7cca-4038-8d50-8e678cf8f0b3",
+              "name": "Education Management"
+            },
+            {
+              "id": "ca2285c2-cb65-4a58-84a9-1c3461c0e567",
+              "name": "E-Learning"
+            },
+            {
+              "id": "cb6040d5-401c-4fa3-bc48-9fbb6e9f7688",
+              "name": "Electrical/Electronic Manufacturing"
+            },
+            {
+              "id": "6f2bb933-6a42-4463-ab4c-0e97b0c00a7b",
+              "name": "Entertainment"
+            },
+            {
+              "id": "82a26cf2-a812-411f-b331-168c938703a8",
+              "name": "Environmental Services"
+            },
+            {
+              "id": "f7ae8803-7003-4448-9313-e17bc523e766",
+              "name": "Events Services"
+            },
+            {
+              "id": "829615fa-a4ab-484e-bdde-0bd5a5ed3fd7",
+              "name": "Executive Office"
+            },
+            {
+              "id": "c4ad0fad-455e-4654-9f12-6a4ce75f6df6",
+              "name": "Facilities Services"
+            },
+            { "id": "36eb340d-4edb-4af2-b2de-ab3af9ae9d72", "name": "Farming" },
+            {
+              "id": "55a1b3fe-989a-4de2-816a-cd8b55b0bc5e",
+              "name": "Financial Services"
+            },
+            {
+              "id": "4ad15f7d-3326-4a87-9872-81d5248c0b99",
+              "name": "Fine Art"
+            },
+            { "id": "e4c7bfd5-a575-4211-a0fb-96169412477f", "name": "Fishery" },
+            {
+              "id": "83bb4b07-89cd-4fdf-8d2c-bfade9f992aa",
+              "name": "Food & Beverages"
+            },
+            {
+              "id": "a39b892c-a444-48de-8248-59b1187f6e60",
+              "name": "Food Production"
+            },
+            {
+              "id": "2df86a68-eea4-4d76-9473-a0fc131bcc79",
+              "name": "Fund-Raising"
+            },
+            {
+              "id": "a224f9f3-1e9f-49aa-8ca5-81ed0ed6127f",
+              "name": "Furniture"
+            },
+            {
+              "id": "73249332-f4dd-494c-ad74-c7fa80b5e996",
+              "name": "Gambling & Casinos"
+            },
+            {
+              "id": "52a1941c-1a30-44be-b705-a733ab960345",
+              "name": "Glass, Ceramics & Concrete"
+            },
+            {
+              "id": "a5540984-5e17-4c01-9de5-50ef17486db1",
+              "name": "Government Administration"
+            },
+            {
+              "id": "915466b0-e0f0-40f2-a681-75c82129eb87",
+              "name": "Government Relations"
+            },
+            {
+              "id": "d47f0e96-129f-4b81-9678-2c3428070c50",
+              "name": "Graphic Design"
+            },
+            {
+              "id": "f498e3dc-d5a9-4d59-b925-c5a1fdfaf31b",
+              "name": "Health, Wellness and Fitness"
+            },
+            {
+              "id": "a8c1d9cd-5011-4bf2-8c32-cf37a8cec6a7",
+              "name": "Higher Education"
+            },
+            {
+              "id": "f9800518-5af1-494f-9e3b-71c37c94a290",
+              "name": "Hospital & Health Care"
+            },
+            {
+              "id": "5f4bdcfb-c07a-4811-861f-02aae07f9c73",
+              "name": "Hospitality"
+            },
+            {
+              "id": "78bae51d-d008-446f-8b47-9682164c36cc",
+              "name": "Human Resources"
+            },
+            {
+              "id": "1f42199c-66be-43e4-9a0e-4fe17cf4872d",
+              "name": "Import and Export"
+            },
+            {
+              "id": "63dc0430-74da-4ba2-b76f-5ff548c5aa3c",
+              "name": "Individual & Family Services"
+            },
+            {
+              "id": "23b82372-64ad-43f3-bd74-32a34aaec8cd",
+              "name": "Industrial Automation"
+            },
+            {
+              "id": "c03f1bf8-9537-49c9-8c2d-419764222f0d",
+              "name": "Information Services"
+            },
+            {
+              "id": "a4b3c7f6-5337-460a-ae9b-497e452d62c2",
+              "name": "Information Technology and Services"
+            },
+            {
+              "id": "4fcf67b3-e621-4566-b2d4-8becdb0c872d",
+              "name": "Insurance"
+            },
+            {
+              "id": "6a758393-f5a4-4be9-b864-bbeace8aa515",
+              "name": "International Affairs"
+            },
+            {
+              "id": "abe70c94-2430-4ddd-b60d-7ab720f740dd",
+              "name": "International Trade and Development"
+            },
+            {
+              "id": "7656814f-1e51-442a-9740-7064dccae404",
+              "name": "Internet"
+            },
+            {
+              "id": "ffaa5a67-bbae-4ae1-adb0-382ab9aeab10",
+              "name": "Investment Banking"
+            },
+            {
+              "id": "11449e81-7630-4c8c-bf98-71357e848c7d",
+              "name": "Investment Management"
+            },
+            {
+              "id": "67edc410-98b4-414e-af7d-512cd9bbb87e",
+              "name": "Judiciary"
+            },
+            {
+              "id": "42d6a16c-5854-4489-99c2-667f8145e9cb",
+              "name": "Law Enforcement"
+            },
+            {
+              "id": "8bfe9219-dcc4-4644-869a-d02f7ac3cb51",
+              "name": "Law Practice"
+            },
+            {
+              "id": "06aecc35-ab1b-4362-911d-be42b8b77f25",
+              "name": "Legal Services"
+            },
+            {
+              "id": "93aacdda-f3db-4fe6-a782-0883b49e8184",
+              "name": "Legislative Office"
+            },
+            {
+              "id": "8788a366-ab28-425d-9027-86c882fa4fd2",
+              "name": "Leisure, Travel & Tourism"
+            },
+            {
+              "id": "6cabf673-c9b1-4dc8-a19e-f280f67ac885",
+              "name": "Libraries"
+            },
+            {
+              "id": "222152cd-0463-4346-a405-c7f7dda3986f",
+              "name": "Logistics and Supply Chain"
+            },
+            {
+              "id": "8f447981-d9c1-47de-91b1-9ad78132e9ff",
+              "name": "Luxury Goods & Jewelry"
+            },
+            {
+              "id": "bb89bd2f-6eb5-418f-ac64-aaf3dfbdfdf0",
+              "name": "Machinery"
+            },
+            {
+              "id": "e0ddf9e6-a166-4afe-918c-498fdf8af1d8",
+              "name": "Management Consulting"
+            },
+            {
+              "id": "0768bb35-2872-4324-b953-b92142fb9d95",
+              "name": "Maritime"
+            },
+            {
+              "id": "7abe962f-ee13-4712-a23e-4ed8fa4b9efc",
+              "name": "Marketing and Advertising"
+            },
+            {
+              "id": "ce447ced-0c44-4fe3-ae4b-808e23c05b82",
+              "name": "Market Research"
+            },
+            {
+              "id": "1be1a423-41b2-4529-a2ed-c1326a1b97b4",
+              "name": "Mechanical or Industrial Engineering"
+            },
+            {
+              "id": "ce9e3170-f007-43ab-a4b2-9534350051e5",
+              "name": "Media Production"
+            },
+            {
+              "id": "60158673-9c4a-4a20-a6c3-fa4b0d9f071a",
+              "name": "Medical Devices"
+            },
+            {
+              "id": "b2a06ea9-7a60-4010-a632-e0b79915153b",
+              "name": "Medical Practice"
+            },
+            {
+              "id": "907e6d71-771b-403a-9c33-7675d251c0e9",
+              "name": "Mental Health Care"
+            },
+            {
+              "id": "ba1e27b9-4c37-471c-a255-a17defd6124b",
+              "name": "Military"
+            },
+            {
+              "id": "0e5048d5-771c-417d-8cf2-eb0620c0a3dd",
+              "name": "Mining & Metals"
+            },
+            {
+              "id": "a8443889-2a22-46e0-a3a9-b9b4e732ca60",
+              "name": "Motion Pictures and Film"
+            },
+            {
+              "id": "5020bb4d-13be-4771-81b0-4ceeabf84f44",
+              "name": "Museums and Institutions"
+            },
+            { "id": "d4a030cd-c786-4835-93f0-5a35b19d7ac6", "name": "Music" },
+            {
+              "id": "f3cfebbe-71a4-4fc8-9480-311813a4d84b",
+              "name": "Nanotechnology"
+            },
+            {
+              "id": "e0d23fa6-d9f0-4f62-98b6-c238b4353940",
+              "name": "Newspapers"
+            },
+            {
+              "id": "c96fcb97-0d3f-4993-903b-bd1875c60aeb",
+              "name": "Nonprofit Organization Management"
+            },
+            {
+              "id": "56112595-1c5f-4320-9b16-57a8d0e6a20a",
+              "name": "Oil & Energy"
+            },
+            {
+              "id": "b74f04a1-19ab-4c8f-ab5c-22aeed023f5b",
+              "name": "Online Media"
+            },
+            {
+              "id": "ae3d24f8-22b2-4806-825f-21ffdfaefe43",
+              "name": "Outsourcing/Offshoring"
+            },
+            {
+              "id": "4f34b013-b474-4152-b5f3-511b1fe00ae0",
+              "name": "Package/Freight Delivery"
+            },
+            {
+              "id": "04969dfe-fff5-41ed-9ab6-5cc6be055ac3",
+              "name": "Packaging and Containers"
+            },
+            {
+              "id": "1c5289d4-cb2c-44fa-85e0-40663c294ee4",
+              "name": "Paper & Forest Products"
+            },
+            {
+              "id": "675eb907-b55d-4a07-93f2-3a63c3b46378",
+              "name": "Performing Arts"
+            },
+            {
+              "id": "8bd60d1f-277e-43a3-b3ef-33ff87ee4dd5",
+              "name": "Pharmaceuticals"
+            },
+            {
+              "id": "149684da-a827-4096-b553-228bf344f6d7",
+              "name": "Philanthropy"
+            },
+            {
+              "id": "e4dac78f-14ce-43a2-9861-aa3b97725965",
+              "name": "Photography"
+            },
+            {
+              "id": "cd0fec9f-0197-4e95-9ca4-a9d5526b741e",
+              "name": "Plastics"
+            },
+            {
+              "id": "40ae3249-6ad4-4f3f-981c-b6fd877405b0",
+              "name": "Political Organization"
+            },
+            {
+              "id": "157c1625-88d8-42d1-93ad-0c9902165d28",
+              "name": "Primary/Secondary Education"
+            },
+            {
+              "id": "83689e87-eac9-4519-9a24-d3ef2f301cf7",
+              "name": "Printing"
+            },
+            {
+              "id": "a361a9b2-0394-4b3d-96ce-e21fd3e78df4",
+              "name": "Professional Training & Coaching"
+            },
+            {
+              "id": "40ed16da-1f4d-46b3-b129-af98a55e08b8",
+              "name": "Program Development"
+            },
+            {
+              "id": "d246c4e2-b21d-48d3-bfb7-2c87050ad178",
+              "name": "Public Policy"
+            },
+            {
+              "id": "fa18a486-9176-49c7-a59f-3bd62e526738",
+              "name": "Public Relations and Communications"
+            },
+            {
+              "id": "c953f6e9-ed62-4a68-a053-37b17cd7f3d5",
+              "name": "Public Safety"
+            },
+            {
+              "id": "8e1d809c-9fad-47e3-974b-cd27cd49935d",
+              "name": "Publishing"
+            },
+            {
+              "id": "dd100c0f-5525-46de-8227-fc4a1cc743d3",
+              "name": "Railroad Manufacture"
+            },
+            {
+              "id": "a65fa505-f2bc-402e-a340-27f6cb478dac",
+              "name": "Ranching"
+            },
+            {
+              "id": "d460745e-fd2d-4391-b875-5036564a54c4",
+              "name": "Real Estate"
+            },
+            {
+              "id": "ef891ebf-2d95-4c22-9030-e861db887bfc",
+              "name": "Recreational Facilities and Services"
+            },
+            {
+              "id": "38c6e9e4-281f-40e4-aa36-85f2a559dbc8",
+              "name": "Religious Institutions"
+            },
+            {
+              "id": "474dc3fe-8d7c-40ea-bf5e-4aae694d76e6",
+              "name": "Renewables & Environment"
+            },
+            {
+              "id": "d87bd979-ac9e-4f3b-a790-116d326ae4ba",
+              "name": "Research"
+            },
+            {
+              "id": "0ab8d7b3-c041-4fca-8c87-15ba6e368b19",
+              "name": "Restaurants"
+            },
+            { "id": "9c0c20c3-e1c2-4fe7-b280-6993813255e6", "name": "Retail" },
+            {
+              "id": "e14401a2-0f4f-4c47-a2f6-6317016082ad",
+              "name": "Security and Investigations"
+            },
+            {
+              "id": "a2720ae1-acc5-4cea-bacf-73e61f66c3e6",
+              "name": "Semiconductors"
+            },
+            {
+              "id": "69683873-ed9d-4d10-a53c-ce4d53c4e756",
+              "name": "Shipbuilding"
+            },
+            {
+              "id": "0ff61520-4418-4a64-8721-c299ab99b3e9",
+              "name": "Sporting Goods"
+            },
+            { "id": "4afad797-f3c7-4e81-bb32-29b40047d0e1", "name": "Sports" },
+            {
+              "id": "1056463c-be4a-4a7a-9a24-bd7e4722792c",
+              "name": "Staffing and Recruiting"
+            },
+            {
+              "id": "61070308-3449-44b1-ae01-b324061817c2",
+              "name": "Supermarkets"
+            },
+            {
+              "id": "0e0b10a9-837a-43f4-84fb-1e17d3e1d80e",
+              "name": "Telecommunications"
+            },
+            {
+              "id": "5b494560-1cc3-4561-bcde-e9572d598394",
+              "name": "Textiles"
+            },
+            {
+              "id": "88ebfefb-39ec-411f-980f-4a318b0d8403",
+              "name": "Think Tanks"
+            },
+            { "id": "0be667ca-0eec-4643-9c24-0d11bc620822", "name": "Tobacco" },
+            {
+              "id": "ae170b7e-7ea9-429e-8c72-5ea457b772ce",
+              "name": "Translation and Localization"
+            },
+            {
+              "id": "5c7f4555-5641-4866-a814-192975fce68b",
+              "name": "Transportation/Trucking/Railroad"
+            },
+            {
+              "id": "ec629536-f0b3-4110-a50b-a79a0020f08d",
+              "name": "Utilities"
+            },
+            {
+              "id": "720a55cd-f6ae-4331-8784-61fb713272ea",
+              "name": "Venture Capital & Private Equity"
+            },
+            {
+              "id": "e392a967-922b-4beb-a467-e2951b09efee",
+              "name": "Veterinary"
+            },
+            {
+              "id": "d700fc03-0d01-49b3-9d70-852254436982",
+              "name": "Warehousing"
+            },
+            {
+              "id": "72773129-a836-4300-9f25-9845b584abb1",
+              "name": "Wholesale"
+            },
+            {
+              "id": "243eb764-735e-456d-9a4a-541f1bedb2a4",
+              "name": "Wine and Spirits"
+            },
+            {
+              "id": "1bdcaa91-e571-4c64-8815-00d9c12b60df",
+              "name": "Wireless"
+            },
+            {
+              "id": "a89b8e97-a274-4967-8d2d-becc3d29c7a0",
+              "name": "Writing and Editing"
+            }
+          ]
+        },
+        "error": {
+          "empty": "Oops! Please make a selection",
+          "unknown input": "Oops! Please make a selection"
+        }
+      },
+      "id": "d21b75a3-517d-407b-bb60-24e3a045ef92"
+    },
+    {
+      "question": "Your role in your company?",
+      "variables": null,
+      "caption": "<span>We want to understand how you spend your time right now.</span><br><br><em>[ </em><span>🔴</span><em>DEVELOPER NOTICE: Options in the questions ahead depend on this question's response/s. ]</em>",
+      "userinput": {
+        "type": "radio",
+        "inputConfig": {
+          "required": true,
+          "name": "Role",
+          "options": ["Founder or CXO", "Product team", "Product team", "VC"],
+          "others": true
+        },
+        "error": null
+      },
+      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
+    },
+    {
+      "question": "$1, what's your professional goal for the next 12 months?",
+      "variables": ["First Name"],
+      "caption": null,
+      "userinput": {
+        "type": "checkbox",
+        "inputConfig": {
+          "required": true,
+          "name": "Professional Goal",
+          "options": ["Founder or CXO", "Product team", "Product team", "VC"],
+          "choose": 2
+        },
+        "error": {
+          "empty": "Oops! Please make a selection",
+          "more choices": "Oops! Please make a selection"
+        }
+      },
+      "id": "9d048aca-57fb-46f7-84b8-669997b960aa"
     }
   ]
 }

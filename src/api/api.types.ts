@@ -7,7 +7,7 @@ export interface ApiResponse<T, D> {
 
 export interface QnaType {
   question: string;
-  captions: string;
+  caption: string;
 }
 export interface OnboardingType {
   heading: string;

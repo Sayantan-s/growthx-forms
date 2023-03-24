@@ -1,7 +1,13 @@
 import { FC } from 'react';
+import { Bar, Container, Progress } from './style';
 
 export const Progressbar: FC = () => {
-  return <div>Progressbar</div>;
+  return (
+    <Container>
+      <Bar />
+      <Progress />
+    </Container>
+  );
 };
 
 Progressbar.displayName = 'Form.Progressbar';
