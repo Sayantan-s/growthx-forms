@@ -7,43 +7,46 @@ export const GrowthXForms = ({
 }: ApiResponse<OnboardingType, QnaType>) => {
   return (
     <Main>
-      <Form payload={data} initialState={{ name: '' }}>
+      <Form payload={data}>
         <Form.Progressbar />
         <Form.Entries>
-          {({ onboarding: ob, questions: content, handleIncrement }) => {
-            const onboarding = ob as OnboardingType;
-            const formContent = content as QnaType[];
-            return (
-              <Form.Entries.Panels>
-                <Form.Entries.Onboarding>
-                  <Form.Entries.Heading fontSize="3">
-                    {onboarding.heading}
-                  </Form.Entries.Heading>
-                  <Form.Entries.Descriptor>
-                    {onboarding.description}
-                  </Form.Entries.Descriptor>
-                  <Form.Entries.Button onClick={handleIncrement}>
-                    {onboarding.buttonText}
-                  </Form.Entries.Button>
-                </Form.Entries.Onboarding>
-                <Form.Entries.DataInput>
-                  {formContent.map((content, index) => (
-                    <Form.Entries.Panel key={content.id} step={index + 1}>
-                      <Form.Entries.Heading fontSize="3">
-                        {content.question}
-                      </Form.Entries.Heading>
-                      <Form.Entries.Descriptor>
-                        {content.caption}
-                      </Form.Entries.Descriptor>
+          {({ onboarding, questions: content, handleIncrement }) => (
+            <Form.Entries.Panels>
+              <Form.Entries.Onboarding>
+                <Form.Entries.Heading fontSize="3">
+                  {onboarding.heading}
+                </Form.Entries.Heading>
+                <Form.Entries.Descriptor>
+                  {onboarding.description}
+                </Form.Entries.Descriptor>
+                <Form.Entries.Button onClick={handleIncrement}>
+                  {onboarding.buttonText}
+                </Form.Entries.Button>
+              </Form.Entries.Onboarding>
+              <Form.Entries.DataInput>
+                {content.map((formContent, index) => (
+                  <Form.Entries.Panel key={formContent.id} step={index}>
+                    <Form.Entries.Heading fontSize="3">
+                      {formContent.question}
+                    </Form.Entries.Heading>
+                    <Form.Entries.Descriptor>
+                      {formContent.caption}
+                    </Form.Entries.Descriptor>
+                    <Form.Entries.InputField {...formContent.userinput} />
+                    <Form.Entries.Controls>
                       <Form.Entries.Button onClick={handleIncrement}>
                         OK
+                        <svg height={13} width={16}>
+                          <path d="M14.293.293l1.414 1.414L5 12.414.293 7.707l1.414-1.414L5 9.586z" />
+                        </svg>
                       </Form.Entries.Button>
-                    </Form.Entries.Panel>
-                  ))}
-                </Form.Entries.DataInput>
-              </Form.Entries.Panels>
-            );
-          }}
+                      <Form.Entries.Indicator indicate="Enter↵" />
+                    </Form.Entries.Controls>
+                  </Form.Entries.Panel>
+                ))}
+              </Form.Entries.DataInput>
+            </Form.Entries.Panels>
+          )}
         </Form.Entries>
       </Form>
     </Main>

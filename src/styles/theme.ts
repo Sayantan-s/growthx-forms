@@ -51,8 +51,9 @@ export const theme: DefaultTheme = {
     },
   },
   fontWeights: {
+    thin: 300,
     body: 400,
-    heading: 700,
+    heading: 500,
     bold: 700,
   },
   fontSize: styleReducer([14, 18, 20, 25, 30, 35, 40]),

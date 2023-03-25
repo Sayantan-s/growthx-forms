@@ -30,4 +30,5 @@ Descriptor.displayName = 'Form.Entries.Descriptor';
 
 const EntryDescriptor = styled(Text)`
   color: ${({ theme }) => theme.colors.black[300]};
+  margin: ${({ theme }) => `${theme.spacing['4']} 0`};
 `;

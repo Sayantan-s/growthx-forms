@@ -1,15 +1,13 @@
-import { ApiResponse } from '@/api/api.types';
-import { once } from 'lodash';
+import { ApiResponse, OnboardingType, QnaType } from '@/api/api.types';
 import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Entries } from './Entries';
 import { Progressbar } from './Progressbar';
 import { useFormControls } from './useFormControls';
 
-export interface FormProps<TOnboard, TQuestions, TState> {
+export interface FormProps {
   children: JSX.Element[];
-  payload: ApiResponse<TOnboard, TQuestions>['data'];
-  initialState: TState;
+  payload: ApiResponse<OnboardingType, QnaType>['data'];
 }
 
 export interface FormStepProps {
@@ -18,22 +16,24 @@ export interface FormStepProps {
   handleIncrement: () => void;
 }
 
-export type FormContextProps<TOnboard, TQuestions, TState> = FormStepProps &
-  FormProps<TOnboard, TQuestions, TState>['payload'];
+export type FormContextProps = FormStepProps &
+  FormProps['payload'] & { formState: InitialState };
 
-const createStateContext = once(<TOnboard, TQuestions, TState>() =>
-  createContext({} as FormContextProps<TOnboard, TQuestions, TState>)
-);
+type InitialState = { [key: string]: string };
 
-const Root = <TOnboard, TQuestions, TState>({
-  children,
-  payload: { onboarding, questions },
-}: FormProps<TOnboard, TQuestions, TState>) => {
-  const FormContext = createStateContext<TOnboard, TQuestions, TState>();
+const FormContext = createContext({} as FormContextProps);
+
+const Root = ({ children, payload: { onboarding, questions } }: FormProps) => {
   const { formStep, handleDecrement, handleIncrement } = useFormControls(
     questions.length + 1
   );
-  const [state, setState] = useState({} as TState);
+  const [initialState, setInitialState] = useState(() => {
+    const content = questions.reduce((acc, question) => {
+      acc[question.userinput.inputConfig.name] = '';
+      return acc;
+    }, {} as InitialState);
+    return content;
+  });
 
   return (
     <FormContext.Provider
@@ -43,6 +43,7 @@ const Root = <TOnboard, TQuestions, TState>({
         step: formStep,
         handleDecrement,
         handleIncrement,
+        formState: initialState,
       }}
     >
       <Container>
@@ -52,10 +53,8 @@ const Root = <TOnboard, TQuestions, TState>({
   );
 };
 
-export const useFormContext = <TOnboard, TQuestions, TState>() => {
-  const context = useContext(
-    createStateContext<TOnboard, TQuestions, TState>()
-  );
+export const useFormContext = () => {
+  const context = useContext(FormContext);
   if (!context) throw new Error(`Context couldn't be found!`);
   return context;
 };

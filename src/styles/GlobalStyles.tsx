@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
         height: 100vh;
         overflow: hidden;
         color: ${({ theme }) => theme.colors.black[50]};
+        font-weight:  ${({ theme }) => theme.fontWeights.thin}
     }
 
     #__next{

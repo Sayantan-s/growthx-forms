@@ -18,8 +18,9 @@ declare module 'styled-components' {
     fontSize: Record<`${number}`, `${number}rem`>;
     spacing: Record<`${number}`, `${number}rem`>;
     fontWeights: {
+      thin: 300;
       body: 400;
-      heading: 700;
+      heading: 500;
       bold: 700;
     };
     lineHeights: {

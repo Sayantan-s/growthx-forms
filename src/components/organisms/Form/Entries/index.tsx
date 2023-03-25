@@ -3,22 +3,21 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { FormContextProps, useFormContext } from '..';
 import { Button } from './Button';
+import { Controls } from './Controls';
 import { DataInput } from './DataInput';
 import { Descriptor } from './Descriptor';
+import { Indicator } from './Indicator';
+import { InputField } from './InputField';
 import { Onboarding } from './Onboarding';
 import { Panel } from './Panel';
 import { Panels } from './Panels';
 
-interface Props<TOnBoard, TQuestions, TState> {
-  children: (
-    props: FormContextProps<TOnBoard, TQuestions, TState>
-  ) => JSX.Element;
+interface Props {
+  children: (props: FormContextProps) => JSX.Element;
 }
 
-const Root = <TOnBoard, TQuestions, TState>({
-  children,
-}: Props<TOnBoard, TQuestions, TState>) => {
-  const context = useFormContext<TOnBoard, TQuestions, TState>();
+const Root = ({ children }: Props) => {
+  const context = useFormContext();
   return (
     <GrowthXEntry>
       <GrowthXEntrylContent>{children(context)}</GrowthXEntrylContent>
@@ -38,6 +37,9 @@ export const Entries = Object.assign(Root, {
   Heading,
   Panels,
   DataInput,
+  InputField,
+  Indicator,
+  Controls,
 });
 
 const GrowthXEntry = styled(motion.div)`

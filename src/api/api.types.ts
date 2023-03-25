@@ -19,22 +19,22 @@ interface ListOptions {
   option: string;
 }
 
-interface InputConfigurationTextField {
+export interface InputConfigurationTextField {
   placeholder: string;
   type: 'text' | 'email';
 }
 
-interface InputConfigurationDataList {
+export interface InputConfigurationDataList {
   placeholder: string;
   options: ListOptions[];
 }
 
-interface InputConfigurationRadio {
+export interface InputConfigurationRadio {
   others: boolean;
   options: ListOptions[];
 }
 
-interface InputConfigurationCheckbox {
+export interface InputConfigurationCheckbox {
   others: boolean;
   options:
     | ListOptions[]
@@ -43,13 +43,13 @@ interface InputConfigurationCheckbox {
       };
 }
 
-interface InputConfigurationPhone {
+export interface InputConfigurationPhone {
   placeholder: string;
   type: 'number';
   withCountryCode: boolean;
 }
 
-type InputConfig<T> = InputConfiguration & T;
+export type InputConfig<T> = InputConfiguration & T;
 
 export interface UserInput {
   checks: UserInputChecks;

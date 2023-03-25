@@ -1,12 +1,13 @@
 import { forwardRef } from 'react';
 import { Box, Stack } from './style';
-import { Props } from './types';
+import { Props, StackProps } from './types';
 
-export const View = forwardRef<HTMLElement, Props>(
-  ({ as = 'div', type = 'box', children, ...props }, ref) => {
+export const View = forwardRef<HTMLElement, Props & StackProps>(
+  ({ type = 'box', children, ...rest }, ref) => {
     const Component = type === 'box' ? Box : Stack;
+    console.log(type, rest.gap);
     return (
-      <Component as={as} {...props} ref={ref}>
+      <Component {...rest} ref={ref}>
         {typeof children === 'function' ? children() : children}
       </Component>
     );
