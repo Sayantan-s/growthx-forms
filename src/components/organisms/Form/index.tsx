@@ -1,39 +1,106 @@
 import { ApiResponse, OnboardingType, QnaType } from '@/api/api.types';
-import { createContext, useContext, useState } from 'react';
+import { PersistenceManager, isClientSide } from '@/utils';
+import {
+  FormEvent,
+  FormEventHandler,
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import { Entries } from './Entries';
+import { Header } from './Header';
 import { Progressbar } from './Progressbar';
 import { useFormControls } from './useFormControls';
 
 export interface FormProps {
   children: JSX.Element[];
   payload: ApiResponse<OnboardingType, QnaType>['data'];
+  persist?: boolean;
 }
 
 export interface FormStepProps {
   step: number;
   handleDecrement: () => void;
   handleIncrement: () => void;
+  progress: number;
 }
 
 export type FormContextProps = FormStepProps &
-  FormProps['payload'] & { formState: InitialState };
+  FormProps['payload'] & {
+    formState: InitialState;
+    handleChange: (eve: FormEvent<HTMLElement>) => void;
+    handleSelect: (name: string, value: string) => void;
+  };
 
 type InitialState = { [key: string]: string };
 
 const FormContext = createContext({} as FormContextProps);
 
-const Root = ({ children, payload: { onboarding, questions } }: FormProps) => {
-  const { formStep, handleDecrement, handleIncrement } = useFormControls(
-    questions.length + 1
+const Root = ({
+  children,
+  payload: { onboarding, questions },
+  persist = false,
+}: FormProps) => {
+  const peristenceManagerRef = useRef(
+    new PersistenceManager<InitialState>('state')
   );
+
   const [initialState, setInitialState] = useState(() => {
     const content = questions.reduce((acc, question) => {
-      acc[question.userinput.inputConfig.name] = '';
+      const key = question.userinput.inputConfig.name;
+      if (persist && isClientSide()) {
+        const persistedData = peristenceManagerRef.current.get();
+        acc[key] = persistedData ? persistedData[key] : '';
+      } else acc[key] = '';
       return acc;
     }, {} as InitialState);
     return content;
   });
+
+  const { formStep, handleDecrement, handleIncrement, progress } =
+    useFormControls({
+      hasOnboarding: !!onboarding,
+      limit: questions.length,
+    });
+
+  const handleChange = useCallback(
+    (eve: FormEvent<HTMLElement>) => {
+      const target = eve.target as HTMLInputElement;
+      setInitialState((prevState) => ({
+        ...prevState,
+        [target.name]: target.value,
+      }));
+      if (persist)
+        peristenceManagerRef.current.set({
+          ...initialState,
+          [target.name]: target.value,
+        });
+    },
+    [persist, initialState]
+  );
+
+  const handleSelect = useCallback(
+    (name: string, value: string) => {
+      setInitialState((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+      if (persist)
+        peristenceManagerRef.current.set({
+          ...initialState,
+          [name]: value,
+        });
+      handleIncrement();
+    },
+    [persist, initialState, handleIncrement]
+  );
+
+  const handleSubmit: FormEventHandler = useCallback((eve) => {
+    eve.preventDefault();
+  }, []);
 
   return (
     <FormContext.Provider
@@ -44,10 +111,13 @@ const Root = ({ children, payload: { onboarding, questions } }: FormProps) => {
         handleDecrement,
         handleIncrement,
         formState: initialState,
+        handleChange,
+        handleSelect,
+        progress,
       }}
     >
       <Container>
-        <form>{children}</form>
+        <form onSubmit={handleSubmit}>{children}</form>
       </Container>
     </FormContext.Provider>
   );
@@ -59,7 +129,7 @@ export const useFormContext = () => {
   return context;
 };
 
-export const Form = Object.assign(Root, { Progressbar, Entries });
+export const Form = Object.assign(Root, { Progressbar, Entries, Header });
 
 const Container = styled.div`
   height: inherit;

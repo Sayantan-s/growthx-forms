@@ -5,4 +5,5 @@ export const Component = styled.input<TextFieldProps>`
   width: 100%;
   background-color: transparent;
   border: none;
+  outline: none;
 `;

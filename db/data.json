@@ -660,13 +660,13 @@
             },
             {
               "id": "f01b8cc1-3193-4797-9c8f-3481ba81cb8b",
-              "option": "Product team"
+              "option": "Marketing team"
             },
             { "id": "50f1c2c5-7a08-446e-b4db-19eee0038aa1", "option": "VC" }
           ],
           "others": true
         },
-        "checks": { "required": true, "choose": 1 }
+        "checks": { "required": true }
       },
       "id": "f4268ad7-9c62-425d-932d-07bf4fec5ba1"
     },

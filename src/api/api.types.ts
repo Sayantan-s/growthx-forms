@@ -6,7 +6,7 @@ export interface ApiResponse<T, D> {
 }
 
 type InputTypes = 'input' | 'checkbox' | 'radio' | 'datalist';
-interface UserInputChecks {
+export interface UserInputChecks {
   [key: string]: boolean;
 }
 

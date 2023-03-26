@@ -57,9 +57,12 @@ export const theme: DefaultTheme = {
     bold: 700,
   },
   fontSize: styleReducer([14, 18, 20, 25, 30, 35, 40]),
-  spacing: styleReducer([0, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50], {
-    fromZero: true,
-  }),
+  spacing: styleReducer(
+    [0, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100],
+    {
+      fromZero: true,
+    }
+  ),
   lineHeights: {
     body: 1.5,
     heading: 1.125,

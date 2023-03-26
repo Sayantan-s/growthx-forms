@@ -2,4 +2,8 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Props } from './type';
 
-export const Component = styled(motion.button)<Props>``;
+export const Component = styled(motion.button)<Props>`
+  cursor: pointer;
+  border: none;
+  outline: none;
+`;

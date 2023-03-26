@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 import { DefaultTheme } from 'styled-components';
-
-export interface Props {
+export interface Props extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
   type?: 'stack' | 'box';
   as?: keyof JSX.IntrinsicElements;
   children: ReactNode | ((...args: unknown[]) => JSX.Element);

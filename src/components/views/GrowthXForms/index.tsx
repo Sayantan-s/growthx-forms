@@ -7,13 +7,19 @@ export const GrowthXForms = ({
 }: ApiResponse<OnboardingType, QnaType>) => {
   return (
     <Main>
-      <Form payload={data}>
+      <Form payload={data} persist>
         <Form.Progressbar />
+        <Form.Header />
         <Form.Entries>
-          {({ onboarding, questions: content, handleIncrement }) => (
+          {({
+            onboarding,
+            questions: content,
+            handleIncrement,
+            handleChange,
+          }) => (
             <Form.Entries.Panels>
               <Form.Entries.Onboarding>
-                <Form.Entries.Heading fontSize="3">
+                <Form.Entries.Heading fontSize="4">
                   {onboarding.heading}
                 </Form.Entries.Heading>
                 <Form.Entries.Descriptor>
@@ -26,13 +32,16 @@ export const GrowthXForms = ({
               <Form.Entries.DataInput>
                 {content.map((formContent, index) => (
                   <Form.Entries.Panel key={formContent.id} step={index}>
-                    <Form.Entries.Heading fontSize="3">
+                    <Form.Entries.Heading fontSize="4">
                       {formContent.question}
                     </Form.Entries.Heading>
                     <Form.Entries.Descriptor>
                       {formContent.caption}
                     </Form.Entries.Descriptor>
-                    <Form.Entries.InputField {...formContent.userinput} />
+                    <Form.Entries.InputField
+                      {...formContent.userinput}
+                      onChange={handleChange}
+                    />
                     <Form.Entries.Controls>
                       <Form.Entries.Button onClick={handleIncrement}>
                         OK

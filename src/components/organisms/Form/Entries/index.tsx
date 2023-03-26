@@ -1,4 +1,3 @@
-import { Text as Heading } from '@/components/atoms';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { FormContextProps, useFormContext } from '..';
@@ -6,6 +5,7 @@ import { Button } from './Button';
 import { Controls } from './Controls';
 import { DataInput } from './DataInput';
 import { Descriptor } from './Descriptor';
+import { Heading } from './Heading';
 import { Indicator } from './Indicator';
 import { InputField } from './InputField';
 import { Onboarding } from './Onboarding';
@@ -27,19 +27,18 @@ const Root = ({ children }: Props) => {
 
 Onboarding.displayName = 'Form.Entries.Onboarding';
 Panel.displayName = 'Form.Entries.Panel';
-Heading.displayName = 'Form.Entries.Heading';
 
 export const Entries = Object.assign(Root, {
   Onboarding,
   Panel,
   Button,
   Descriptor,
-  Heading,
   Panels,
   DataInput,
   InputField,
   Indicator,
   Controls,
+  Heading,
 });
 
 const GrowthXEntry = styled(motion.div)`

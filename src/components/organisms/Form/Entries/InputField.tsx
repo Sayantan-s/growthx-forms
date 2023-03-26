@@ -1,18 +1,39 @@
 import {
   InputConfig,
+  InputConfigurationDataList,
+  InputConfigurationRadio,
   InputConfigurationTextField,
   UserInput,
 } from '@/api/api.types';
-import { TextField } from '@/components/atoms';
-import styled from 'styled-components';
+import { HTMLAttributes } from 'react';
+import { useFormContext } from '..';
+import { Datalist } from './Datalist';
+import { RadioList } from './RadioList';
+import { TextInput } from './TextInput';
 
-export const InputField = ({ checks, type, inputConfig }: UserInput) => {
+type Props = UserInput & HTMLAttributes<HTMLElement>;
+
+export const InputField = ({ checks, type, inputConfig, ...rest }: Props) => {
+  const { formState } = useFormContext();
   switch (type) {
     case 'input':
       return (
-        <StyledTextField
+        <TextInput
+          checks={checks}
           {...(inputConfig as InputConfig<InputConfigurationTextField>)}
+          {...rest}
+          value={formState[inputConfig.name]} // Passing the changed value
         />
+      );
+    case 'datalist':
+      return (
+        <Datalist
+          {...(inputConfig as InputConfig<InputConfigurationDataList>)}
+        />
+      );
+    case 'radio':
+      return (
+        <RadioList {...(inputConfig as InputConfig<InputConfigurationRadio>)} />
       );
     default:
       return null;
@@ -20,21 +41,3 @@ export const InputField = ({ checks, type, inputConfig }: UserInput) => {
 };
 
 InputField.displayName = 'Form.Entries.Input';
-
-const StyledTextField = styled(TextField)`
-  box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
-  outline: none;
-  transition: 0.2s box-shadow;
-  padding: ${({ theme }) => `${theme.spacing['2']} 0`};
-  font-size: ${({ theme }) => theme.fontSize['5']};
-  color: ${({ theme }) => theme.colors.black[50]};
-  margin: ${({ theme }) => `${theme.spacing['3']} 0`};
-  font-weight: ${({ theme }) => theme.fontWeights.thin};
-  &:focus {
-    outline: none;
-    box-shadow: ${({ theme }) => `${theme.colors.black[100]} 0px 2px`};
-  }
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.black[700]};
-  }
-`;

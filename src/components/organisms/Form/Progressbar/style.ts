@@ -14,7 +14,6 @@ export const Bar = styled.div`
 
 export const Progress = styled(motion.div)`
   height: 100%;
-  width: 50%;
   position: absolute;
   top: 0;
   left: 0;

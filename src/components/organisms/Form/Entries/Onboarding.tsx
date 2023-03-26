@@ -5,11 +5,9 @@ export interface Props {
   children: React.ReactNode;
 }
 
-const Root = ({ children }: Props) => {
+export const Onboarding = ({ children }: Props) => {
   const { step: formStep } = useFormContext();
-  return formStep === 0 ? <View>{children}</View> : null;
+  return formStep === -1 ? <View>{children}</View> : null;
 };
 
-Root.displayName = 'Form.Entries.Onboarding';
-
-export const Onboarding = Object.assign(Root, {});
+Onboarding.displayName = 'Form.Entries.Onboarding';
