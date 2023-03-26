@@ -2,9 +2,10 @@ import { InputConfig, InputConfigurationRadio } from '@/api/api.types';
 import { Button, Text, TextField, View } from '@/components/atoms';
 import { AnimationDefinition, motion } from 'framer-motion';
 import React, { FC, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 import { useFormContext } from '../..';
 import Tick from '../Tick';
+import { SelectedProps } from './type';
 
 const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -13,11 +14,11 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
   others,
   name,
 }) => {
+  const { handleSelect: onSelect, formState } = useFormContext();
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState('');
   const theme = useTheme();
-  const [selected, setSelected] = useState('');
-  const { handleSelect: onSelect } = useFormContext();
+  const [selected, setSelected] = useState(formState[name]);
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (eve) =>
     setValue(eve.target.value);
@@ -67,6 +68,7 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
                 onAnimationComplete(option, ...args)
               }
               onClick={() => handleClick(option)}
+              selected={selected === option}
             >
               <View type="stack" gap="2">
                 <KeyPad>{alphabets[index]}</KeyPad>
@@ -78,7 +80,10 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
             </Option>
           ))}
           {others ? (
-            <InputOption onClick={handleShowInput}>
+            <InputOption
+              onClick={handleShowInput}
+              selected={selected === value}
+            >
               {showInput ? (
                 <InputComponent>
                   <StyledTextField
@@ -106,7 +111,7 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
   );
 };
 
-const Option = styled(motion.li)`
+const Option = styled(motion.li)<SelectedProps>`
   list-style: none;
   width: 30%;
   align-self: flex-start;
@@ -122,6 +127,11 @@ const Option = styled(motion.li)`
   &:hover {
     background-color: ${({ theme }) => `${theme.colors.black[50]}40`};
   }
+  ${({ selected }) =>
+    selected &&
+    css`
+      border: 1px solid ${({ theme }) => theme.colors.black[50]};
+    `}
 `;
 
 const InputOption = styled(Option)`

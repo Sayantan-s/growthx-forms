@@ -67,12 +67,7 @@ export const Datalist: FC<InputConfig<InputConfigurationDataList>> = ({
       : str;
 
   return (
-    <StyledDatalist
-      type="stack"
-      onBlur={() => {
-        console.log('blur...');
-      }}
-    >
+    <StyledDatalist type="stack">
       <DataListInput
         {...rest}
         type="text"

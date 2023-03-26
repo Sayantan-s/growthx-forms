@@ -7,11 +7,18 @@ export interface ApiResponse<T, D> {
 
 type InputTypes = 'input' | 'checkbox' | 'radio' | 'datalist';
 export interface UserInputChecks {
-  [key: string]: boolean;
+  [key: string]: boolean | number;
 }
 
 interface InputConfiguration {
   name: string;
+}
+
+export interface WithReference<TData> {
+  variable: string;
+  value: {
+    [key: string]: TData;
+  };
 }
 
 interface ListOptions {
@@ -36,11 +43,7 @@ export interface InputConfigurationRadio {
 
 export interface InputConfigurationCheckbox {
   others: boolean;
-  options:
-    | ListOptions[]
-    | {
-        [key: string]: ListOptions;
-      };
+  options: ListOptions[] | WithReference<ListOptions[]>;
 }
 
 export interface InputConfigurationPhone {
