@@ -33,6 +33,7 @@ export type FormContextProps = FormStepProps &
     formState: InitialState;
     handleChange: (eve: FormEvent<HTMLElement>) => void;
     handleSelect: (name: string, value: string) => void;
+    persist: boolean;
   };
 
 type InitialState = { [key: string]: string };
@@ -114,6 +115,7 @@ const Root = ({
         handleChange,
         handleSelect,
         progress,
+        persist,
       }}
     >
       <Container>

@@ -726,7 +726,7 @@
       "id": "bf108a4b-959e-4fe1-8a70-35ec396438a4"
     },
     {
-      "question": "Email you'd like to register with?This question is required. ",
+      "question": "Email you'd like to register with?",
       "variables": null,
       "caption": "<span>We will keep all our communications with you through this email. Do check your spam inbox if you can't find our application received email.</span><br><br><em>[ </em><span>🔴</span><em>DEVELOPER NOTICE: Responses submitted to this form will be forwarded to the email you input here, for you to test data submissions. ]</em>",
       "userinput": {
@@ -745,7 +745,7 @@
       "variables": null,
       "caption": "We won't call you unless it is absolutely required to process your application.",
       "userinput": {
-        "type": "input",
+        "type": "phone",
         "inputConfig": {
           "placeholder": "081234 56789",
           "name": "Phone",

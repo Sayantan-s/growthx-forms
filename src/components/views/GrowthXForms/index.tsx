@@ -11,12 +11,7 @@ export const GrowthXForms = ({
         <Form.Progressbar />
         <Form.Header />
         <Form.Entries>
-          {({
-            onboarding,
-            questions: content,
-            handleIncrement,
-            handleChange,
-          }) => (
+          {({ onboarding, questions: content, handleIncrement }) => (
             <Form.Entries.Panels>
               <Form.Entries.Onboarding>
                 <Form.Entries.Heading fontSize="4">
@@ -38,11 +33,8 @@ export const GrowthXForms = ({
                     <Form.Entries.Descriptor>
                       {formContent.caption}
                     </Form.Entries.Descriptor>
-                    <Form.Entries.InputField
-                      {...formContent.userinput}
-                      onChange={handleChange}
-                    />
-                    <Form.Entries.Controls>
+                    <Form.Entries.InputField {...formContent.userinput} />
+                    {/* <Form.Entries.Controls>
                       <Form.Entries.Button onClick={handleIncrement}>
                         OK
                         <svg height={13} width={16}>
@@ -50,7 +42,7 @@ export const GrowthXForms = ({
                         </svg>
                       </Form.Entries.Button>
                       <Form.Entries.Indicator indicate="Enter↵" />
-                    </Form.Entries.Controls>
+                    </Form.Entries.Controls> */}
                   </Form.Entries.Panel>
                 ))}
               </Form.Entries.DataInput>

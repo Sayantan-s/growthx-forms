@@ -3,15 +3,22 @@ import { TextField, View } from '@/components/atoms';
 import { Props as TextFieldProps } from '@/components/atoms/TextField/types';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
+import { useFormContext } from '..';
 
 interface Props extends TextFieldProps {
   checks: UserInputChecks;
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  const { formState, handleChange } = useFormContext();
   return (
     <View>
-      <StyledTextField {...props} ref={ref} />
+      <StyledTextField
+        {...props}
+        value={formState[props.name]}
+        onChange={handleChange}
+        ref={ref}
+      />
     </View>
   );
 });

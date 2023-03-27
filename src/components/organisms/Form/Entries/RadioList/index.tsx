@@ -1,13 +1,10 @@
 import { InputConfig, InputConfigurationRadio } from '@/api/api.types';
 import { Button, Text, TextField, View } from '@/components/atoms';
-import { AnimationDefinition, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import React, { FC, useState } from 'react';
-import styled, { css, useTheme } from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { useFormContext } from '../..';
-import Tick from '../Tick';
-import { SelectedProps } from './type';
-
-const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+import { Option, alphabets } from '../Option';
 
 export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
   options,
@@ -16,16 +13,17 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
 }) => {
   const { handleSelect: onSelect, formState } = useFormContext();
   const [showInput, setShowInput] = useState(false);
-  const [value, setValue] = useState('');
-  const theme = useTheme();
   const [selected, setSelected] = useState(formState[name]);
+  const [value, setValue] = useState(formState[name]);
+  const theme = useTheme();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (eve) =>
     setValue(eve.target.value);
 
   const handleShowInput = () => setShowInput(true);
 
-  const handleClick = (option: string) => setSelected(option);
+  const handleClick = (option: string) =>
+    setSelected((prevState) => (prevState === option ? '' : option));
 
   const handleSubmitOthers: React.MouseEventHandler<HTMLButtonElement> = (
     eve
@@ -38,84 +36,42 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
     }
   };
 
-  const onAnimationComplete = (
-    option: string,
-    ...args: [AnimationDefinition]
-  ) => {
-    // trigger selection when the blinking animation completes
-    const denoter = args[0] as { backgroundColor: string[] | string };
-    if (!Array.isArray(denoter.backgroundColor)) {
-      onSelect(name, option);
-    }
+  const onClickFinish = (option: string) => {
+    console.log(option);
+    if (option === selected) onSelect(name, option);
   };
 
   return (
     <View type="stack">
       <RadioListContent>
-        <View as="ul" type="stack" direction="vertical" gap="2">
+        <Option.Content>
           {options.map(({ option, id }, index) => (
             <Option
+              option={option}
+              index={index}
               key={id}
-              whileTap={{
-                backgroundColor: [
-                  `${theme.colors.black[50]}15`,
-                  `${theme.colors.black[50]}60`,
-                  `${theme.colors.black[50]}15`,
-                ],
-              }}
-              transition={{ repeat: 2, duration: 0.2 }}
-              onAnimationComplete={(...args) =>
-                onAnimationComplete(option, ...args)
-              }
               onClick={() => handleClick(option)}
+              onClickFinish={onClickFinish}
               selected={selected === option}
-            >
-              <View type="stack" gap="2">
-                <KeyPad>{alphabets[index]}</KeyPad>
-                <Text>{option}</Text>
-              </View>
-              {selected === option ? (
-                <Tick color={theme.colors.black[50]} />
-              ) : null}
-            </Option>
+            />
           ))}
-          {others ? (
-            <InputOption
-              onClick={handleShowInput}
-              selected={selected === value}
-            >
-              {showInput ? (
-                <InputComponent>
-                  <StyledTextField
-                    type="text"
-                    name="other"
-                    placeholder="Type your answer"
-                    value={value}
-                    onChange={handleChange}
-                  />
-                  <SubmitOthersButton onClick={handleSubmitOthers}>
-                    <Tick color={theme.colors.black[700]} />
-                  </SubmitOthersButton>
-                </InputComponent>
-              ) : (
-                <View type="stack" gap="2">
-                  <KeyPad>{alphabets[options.length]}</KeyPad>
-                  <Text>Others</Text>
-                </View>
-              )}
-            </InputOption>
-          ) : null}
-        </View>
+          <InputOption onClick={handleShowInput}>
+            <View type="stack" gap="2">
+              <KeyPad>{alphabets[options.length]}</KeyPad>
+              <Text>Others</Text>
+            </View>
+          </InputOption>
+        </Option.Content>
       </RadioListContent>
     </View>
   );
 };
 
-const Option = styled(motion.li)<SelectedProps>`
+const InputOption = styled(motion.li)`
+  padding: ${({ theme }) => `0 ${theme.spacing['1']} 0 ${theme.spacing['3']}`};
   list-style: none;
-  width: 30%;
+  width: 100%;
   align-self: flex-start;
-  padding: ${({ theme }) => `0 ${theme.spacing['3']}`};
   border: 1px solid ${({ theme }) => theme.colors.black[400]};
   border-radius: 0.5rem;
   background-color: ${({ theme }) => `${theme.colors.black[50]}15`};
@@ -126,18 +82,6 @@ const Option = styled(motion.li)<SelectedProps>`
   height: 4rem;
   &:hover {
     background-color: ${({ theme }) => `${theme.colors.black[50]}40`};
-  }
-  ${({ selected }) =>
-    selected &&
-    css`
-      border: 1px solid ${({ theme }) => theme.colors.black[50]};
-    `}
-`;
-
-const InputOption = styled(Option)`
-  padding: ${({ theme }) => `0 ${theme.spacing['1']} 0 ${theme.spacing['3']}`};
-  &:hover {
-    background-color: ${({ theme }) => `${theme.colors.black[50]}15`};
   }
 `;
 
@@ -185,3 +129,32 @@ const StyledTextField = styled(TextField)`
     color: ${({ theme }) => theme.colors.black[100]};
   }
 `;
+
+// {
+//   others ? (
+//     <InputOption onClick={handleShowInput}>
+//       {showInput ? (
+//         <InputComponent>
+//           <StyledTextField
+//             type="text"
+//             name="other"
+//             placeholder="Type your answer"
+//             value={value}
+//             onChange={handleChange}
+//           />
+//           <SubmitOthersButton onClick={handleSubmitOthers}>
+//             <Tick color={theme.colors.black[700]} />
+//           </SubmitOthersButton>
+//         </InputComponent>
+//       ) : (
+//         <>
+//           <View type="stack" gap="2">
+//             <KeyPad>{alphabets[options.length]}</KeyPad>
+//             <Text>Others</Text>
+//           </View>
+//           {selected ? <Tick color={theme.colors.black[50]} /> : null}
+//         </>
+//       )}
+//     </InputOption>
+//   ) : null;
+// }

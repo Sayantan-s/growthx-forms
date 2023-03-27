@@ -6,4 +6,11 @@ export const Component = styled.input<TextFieldProps>`
   background-color: transparent;
   border: none;
   outline: none;
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+  &[type='number']:hover,
+  &[type='number']:focus {
+    -moz-appearance: number-input;
+  }
 `;

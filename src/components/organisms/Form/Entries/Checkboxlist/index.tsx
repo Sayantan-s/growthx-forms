@@ -4,7 +4,7 @@ import {
   UserInputChecks,
 } from '@/api/api.types';
 import { Text, View } from '@/components/atoms';
-import { AnimationDefinition, motion } from 'framer-motion';
+import { AnimatePresence, AnimationDefinition, motion } from 'framer-motion';
 import { FC, useMemo, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 import { useFormContext } from '../..';
@@ -21,13 +21,7 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
   const { handleSelect: onSelect, formState } = useFormContext();
   const theme = useTheme();
 
-  const [selected, setSelected] = useState(() =>
-    typeof checks.choose === 'number' && checks.choose > 1
-      ? formState[name].split(',')
-      : formState[name]
-      ? [formState[name]]
-      : []
-  );
+  const [selected, setSelected] = useState<string[]>([]);
 
   const [disableOptions, setDisableOptions] = useState(false);
 
@@ -62,31 +56,33 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
     <CheckboxList type="stack">
       <CheckboxlistContent>
         <View as="ul" type="stack" direction="vertical" gap="2">
-          {checkboxOptions.map(({ option, id }, index) => (
-            <Option
-              key={id}
-              whileTap={{
-                backgroundColor: [
-                  `${theme.colors.black[50]}15`,
-                  `${theme.colors.black[50]}60`,
-                  `${theme.colors.black[50]}15`,
-                ],
-              }}
-              transition={{ repeat: 2, duration: 0.2 }}
-              onAnimationComplete={onAnimationComplete}
-              onClick={() => handleSelect(option)}
-              selected={selected.includes(option)}
-              disabled={!selected.includes(option) && disableOptions}
-            >
-              <View type="stack" gap="2">
-                <KeyPad>{alphabets[index]}</KeyPad>
-                <Text>{option}</Text>
-              </View>
-              {selected.includes(option) ? (
-                <Tick color={theme.colors.black[50]} />
-              ) : null}
-            </Option>
-          ))}
+          <AnimatePresence presenceAffectsLayout>
+            {checkboxOptions.map(({ option, id }, index) => (
+              <Option
+                key={id}
+                whileTap={{
+                  backgroundColor: [
+                    `${theme.colors.black[50]}15`,
+                    `${theme.colors.black[50]}60`,
+                    `${theme.colors.black[50]}15`,
+                  ],
+                }}
+                transition={{ repeat: 2, duration: 0.2 }}
+                onAnimationComplete={onAnimationComplete}
+                onClick={() => handleSelect(option)}
+                selected={selected.includes(option)}
+                disabled={!selected.includes(option) && disableOptions}
+              >
+                <View type="stack" gap="2">
+                  <KeyPad>{alphabets[index]}</KeyPad>
+                  <Text>{option}</Text>
+                </View>
+                {selected.includes(option) ? (
+                  <Tick color={theme.colors.black[50]} />
+                ) : null}
+              </Option>
+            ))}
+          </AnimatePresence>
         </View>
       </CheckboxlistContent>
     </CheckboxList>

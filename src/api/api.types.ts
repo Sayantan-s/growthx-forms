@@ -5,7 +5,7 @@ export interface ApiResponse<T, D> {
   };
 }
 
-type InputTypes = 'input' | 'checkbox' | 'radio' | 'datalist';
+type InputTypes = 'input' | 'checkbox' | 'radio' | 'datalist' | 'phone';
 export interface UserInputChecks {
   [key: string]: boolean | number;
 }
@@ -28,7 +28,7 @@ interface ListOptions {
 
 export interface InputConfigurationTextField {
   placeholder: string;
-  type: 'text' | 'email';
+  type: 'text' | 'email' | 'number';
 }
 
 export interface InputConfigurationDataList {

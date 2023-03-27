@@ -2,6 +2,7 @@ import {
   InputConfig,
   InputConfigurationCheckbox,
   InputConfigurationDataList,
+  InputConfigurationPhone,
   InputConfigurationRadio,
   InputConfigurationTextField,
   UserInput,
@@ -10,6 +11,7 @@ import { HTMLAttributes } from 'react';
 import { useFormContext } from '..';
 import { Checkboxlist } from './Checkboxlist';
 import { Datalist } from './Datalist';
+import { Phone } from './Phone';
 import { RadioList } from './RadioList';
 import { TextInput } from './TextInput';
 
@@ -41,6 +43,13 @@ export const InputField = ({ checks, type, inputConfig, ...rest }: Props) => {
       return (
         <Checkboxlist
           {...(inputConfig as InputConfig<InputConfigurationCheckbox>)}
+          checks={checks}
+        />
+      );
+    case 'phone':
+      return (
+        <Phone
+          {...(inputConfig as InputConfig<InputConfigurationPhone>)}
           checks={checks}
         />
       );
