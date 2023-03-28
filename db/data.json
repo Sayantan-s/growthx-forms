@@ -16,7 +16,9 @@
           "name": "First Name",
           "type": "text"
         },
-        "checks": { "required": true }
+        "checks": {
+          "required": { "value": true, "message": "Please Fill this in" }
+        }
       },
       "id": "c0e8f2fd-1702-4963-b3c2-729eae666c6a"
     },
@@ -31,7 +33,9 @@
           "name": "Last Name",
           "type": "text"
         },
-        "checks": { "required": true }
+        "checks": {
+          "required": { "value": true, "message": "Please Fill this in" }
+        }
       },
       "id": "d8015c74-5570-4f70-a10c-1daa109e0b3a"
     },
@@ -637,7 +641,16 @@
             }
           ]
         },
-        "checks": { "required": true, "shouldBeAnOption": true }
+        "checks": {
+          "required": {
+            "value": true,
+            "message": "<strong>Oops!</strong> Please make a selection</div>"
+          },
+          "shouldBeAnOption": {
+            "value": true,
+            "message": "No Suggestions found"
+          }
+        }
       },
       "id": "c8930dc9-0b17-4565-ba54-040ec7387a21"
     },
@@ -647,6 +660,7 @@
       "caption": "<span>We want to understand how you spend your time right now.</span><br><br><em>[ </em><span>🔴</span><em>DEVELOPER NOTICE: Options in the questions ahead depend on this question's response/s. ]</em>",
       "userinput": {
         "type": "radio",
+        "block_next": true,
         "inputConfig": {
           "name": "Role",
           "options": [
@@ -666,7 +680,12 @@
           ],
           "others": true
         },
-        "checks": { "required": true }
+        "checks": {
+          "required": {
+            "value": true,
+            "message": "<strong>Oops!</strong> Please make a selection</div>"
+          }
+        }
       },
       "id": "f4268ad7-9c62-425d-932d-07bf4fec5ba1"
     },
@@ -721,7 +740,16 @@
           },
           "others": false
         },
-        "checks": { "required": true, "choose": 2 }
+        "checks": {
+          "required": {
+            "value": true,
+            "message": "<strong>Oops!</strong> Please make a selection</div>"
+          },
+          "choose": {
+            "value": 2,
+            "message": "Please select more choices"
+          }
+        }
       },
       "id": "bf108a4b-959e-4fe1-8a70-35ec396438a4"
     },
@@ -736,7 +764,13 @@
           "name": "Email",
           "type": "email"
         },
-        "checks": { "required": true, "email": true }
+        "checks": {
+          "required": { "value": true, "message": "Please Fill this in" },
+          "email": {
+            "value": true,
+            "message": "Hmm... that email doesn't look right"
+          }
+        }
       },
       "id": "f93e24f6-7c07-4d8a-9fe8-e3560ad2cbd6"
     },
@@ -752,7 +786,13 @@
           "type": "number",
           "withCountryCode": true
         },
-        "checks": { "required": true }
+        "checks": {
+          "required": { "value": true, "message": "Please Fill this in" },
+          "email": {
+            "value": true,
+            "message": "Hmm... that phone number doesn't look right"
+          }
+        }
       },
       "id": "dbfb7a01-4df1-470b-82f5-5815a62da4cd"
     }

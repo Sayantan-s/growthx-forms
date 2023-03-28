@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import { Entries } from './Entries';
 import { Header } from './Header';
 import { Progressbar } from './Progressbar';
-import { useFormControls } from './useFormControls';
+import { FormState, useFormControls } from './useFormControls';
 
 export interface FormProps {
   children: JSX.Element[];
@@ -34,9 +34,10 @@ export type FormContextProps = FormStepProps &
     handleChange: (eve: FormEvent<HTMLElement>) => void;
     handleSelect: (name: string, value: string) => void;
     persist: boolean;
+    error: FormState;
   };
 
-type InitialState = { [key: string]: string };
+export type InitialState = { [key: string]: string };
 
 const FormContext = createContext({} as FormContextProps);
 
@@ -61,11 +62,18 @@ const Root = ({
     return content;
   });
 
-  const { formStep, handleDecrement, handleIncrement, progress } =
-    useFormControls({
-      hasOnboarding: !!onboarding,
-      limit: questions.length,
-    });
+  const {
+    formStep,
+    handleDecrement,
+    handleIncrement,
+    progress,
+    error,
+    setError,
+  } = useFormControls({
+    hasOnboarding: !!onboarding,
+    questions,
+    formState: initialState,
+  });
 
   const handleChange = useCallback(
     (eve: FormEvent<HTMLElement>) => {
@@ -74,13 +82,14 @@ const Root = ({
         ...prevState,
         [target.name]: target.value,
       }));
+      setError((prevState) => ({ ...prevState, [target.name]: null }));
       if (persist)
         peristenceManagerRef.current.set({
           ...initialState,
           [target.name]: target.value,
         });
     },
-    [persist, initialState]
+    [setError, persist, initialState]
   );
 
   const handleSelect = useCallback(
@@ -89,14 +98,15 @@ const Root = ({
         ...prevState,
         [name]: value,
       }));
+      setError((prevState) => ({ ...prevState, [name]: null }));
       if (persist)
         peristenceManagerRef.current.set({
           ...initialState,
           [name]: value,
         });
-      handleIncrement();
+      handleIncrement(value);
     },
-    [persist, initialState, handleIncrement]
+    [setError, persist, initialState, handleIncrement]
   );
 
   const handleSubmit: FormEventHandler = useCallback((eve) => {
@@ -116,6 +126,7 @@ const Root = ({
         handleSelect,
         progress,
         persist,
+        error,
       }}
     >
       <Container>

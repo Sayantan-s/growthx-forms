@@ -3,13 +3,11 @@ import {
   InputConfigurationCheckbox,
   UserInputChecks,
 } from '@/api/api.types';
-import { Text, View } from '@/components/atoms';
-import { AnimatePresence, AnimationDefinition, motion } from 'framer-motion';
+import { View } from '@/components/atoms';
 import { FC, useMemo, useState } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 import { useFormContext } from '../..';
-import Tick from '../Tick';
-import { SelectedProps } from './type';
+import { Option } from '../Option';
 
 const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -18,10 +16,15 @@ interface Props extends InputConfig<InputConfigurationCheckbox> {
 }
 
 export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
-  const { handleSelect: onSelect, formState } = useFormContext();
+  const {
+    handleSelect: onSelect,
+    formState,
+    handleIncrement,
+  } = useFormContext();
   const theme = useTheme();
 
   const [selected, setSelected] = useState<string[]>([]);
+  const [hasSelected, setHasSelected] = useState(false);
 
   const [disableOptions, setDisableOptions] = useState(false);
 
@@ -33,83 +36,47 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
     [formState, options]
   );
 
-  const onAnimationComplete = (def: AnimationDefinition) => {
+  const onAnimationComplete = () => {
     // trigger selection when the blinking animation completes
-    const denoter = def as { backgroundColor: string[] | string };
-    if (
-      !Array.isArray(denoter.backgroundColor) &&
-      selected.length === checks.choose
-    ) {
-      onSelect(name, selected.join(','));
-    }
+    // if (selected.length === checks.choose.value) {
+    //   onSelect(name, selected.join(','));
+    // }
+
+    console.log('HELLO');
   };
 
-  console.log(selected.length, checks); // Double check the localstorage when the user changes role. !important
+  // console.log(selected.length, checks); // Double check the localstorage when the user changes role. !important
 
   const handleSelect = (option: string) => {
     const choosables = [...selected, option];
     setSelected(choosables);
-    setDisableOptions(choosables.length === checks.choose);
+    setDisableOptions(choosables.length === checks.choose.value);
   };
 
   return (
-    <CheckboxList type="stack">
-      <CheckboxlistContent>
-        <View as="ul" type="stack" direction="vertical" gap="2">
-          <AnimatePresence presenceAffectsLayout>
+    <View>
+      <CheckboxList type="stack">
+        <CheckboxlistContent>
+          <CheckboxOptionContent>
             {checkboxOptions.map(({ option, id }, index) => (
-              <Option
+              <CheckboxOption
+                option={option}
                 key={id}
-                whileTap={{
-                  backgroundColor: [
-                    `${theme.colors.black[50]}15`,
-                    `${theme.colors.black[50]}60`,
-                    `${theme.colors.black[50]}15`,
-                  ],
-                }}
-                transition={{ repeat: 2, duration: 0.2 }}
-                onAnimationComplete={onAnimationComplete}
+                onClickFinish={onAnimationComplete}
                 onClick={() => handleSelect(option)}
                 selected={selected.includes(option)}
                 disabled={!selected.includes(option) && disableOptions}
-              >
-                <View type="stack" gap="2">
-                  <KeyPad>{alphabets[index]}</KeyPad>
-                  <Text>{option}</Text>
-                </View>
-                {selected.includes(option) ? (
-                  <Tick color={theme.colors.black[50]} />
-                ) : null}
-              </Option>
+                index={index}
+              />
             ))}
-          </AnimatePresence>
-        </View>
-      </CheckboxlistContent>
-    </CheckboxList>
+          </CheckboxOptionContent>
+        </CheckboxlistContent>
+      </CheckboxList>
+    </View>
   );
 };
 
-const Option = styled(motion.li)<SelectedProps>`
-  list-style: none;
-  width: 50%;
-  align-self: flex-start;
-  padding: ${({ theme }) => `0 ${theme.spacing['3']}`};
-  border: 1px solid ${({ theme }) => theme.colors.black[400]};
-  border-radius: 0.5rem;
-  background-color: ${({ theme }) => `${theme.colors.black[50]}15`};
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 4rem;
-  &:hover {
-    background-color: ${({ theme }) => `${theme.colors.black[50]}40`};
-  }
-  ${({ selected }) =>
-    selected &&
-    css`
-      border: 1px solid ${({ theme }) => theme.colors.black[50]};
-    `}
+const CheckboxOption = styled(Option)<{ disabled?: boolean }>`
   ${({ disabled }) =>
     disabled &&
     css`
@@ -117,21 +84,12 @@ const Option = styled(motion.li)<SelectedProps>`
     `}
 `;
 
-const CheckboxList = styled(View)`
-  margin-top: ${({ theme }) => theme.spacing['9']};
+const CheckboxOptionContent = styled(Option.Content)`
+  max-width: 40rem;
 `;
 
-const KeyPad = styled(View)`
-  width: 2.5rem;
-  aspect-ratio: 1/1;
-  background-color: ${({ theme }) => theme.colors.black[900]};
-  font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.fontWeights.heading};
-  border: 1px solid ${({ theme }) => theme.colors.black[50]};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 0.3rem;
+const CheckboxList = styled(View)`
+  margin-top: ${({ theme }) => theme.spacing['9']};
 `;
 
 const CheckboxlistContent = styled(View)`

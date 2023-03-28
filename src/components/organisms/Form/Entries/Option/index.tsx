@@ -1,6 +1,7 @@
 import { Text, View } from '@/components/atoms';
-import { AnimationDefinition, HTMLMotionProps, motion } from 'framer-motion';
-import { FC } from 'react';
+import { pulseCSS, usePulse } from '@/hooks';
+import { HTMLMotionProps, motion } from 'framer-motion';
+import { FC, MouseEventHandler } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 import Tick from '../Tick';
 import { Content } from './Content';
@@ -22,30 +23,28 @@ const Root: FC<Props> = ({
   option,
   children,
   onClickFinish,
+  onClick,
   ...rest
 }) => {
   const theme = useTheme();
 
-  const handleAnimate = (option: string, ...args: [AnimationDefinition]) => {
-    // trigger selection when the blinking animation completes
-    const denoter = args[0] as { backgroundColor: string[] | string };
-    if (!Array.isArray(denoter.backgroundColor)) {
-      onClickFinish?.(option);
+  const [isPulsing, handlePulsing] = usePulse();
+
+  const handleAnimate = () => onClickFinish?.(option!);
+
+  const handleClick: MouseEventHandler<HTMLLIElement> = (eve) => {
+    if (!selected) {
+      handlePulsing();
     }
+    onClick?.(eve);
   };
 
   return (
     <Component
-      whileTap={{
-        backgroundColor: [
-          `${theme.colors.black[50]}15`,
-          `${theme.colors.black[50]}60`,
-          `${theme.colors.black[50]}15`,
-        ],
-      }}
-      transition={{ repeat: 2, duration: 0.2 }}
+      $ispulsing={isPulsing}
       selected={selected}
-      onAnimationComplete={(...args) => handleAnimate(option!, ...args)}
+      onClick={handleClick}
+      onAnimationEnd={handleAnimate}
       {...rest}
     >
       {children || (
@@ -64,7 +63,7 @@ const Root: FC<Props> = ({
 export const Option = Object.assign(Root, { Content });
 
 const Component = styled(motion.li)<
-  Omit<Props, 'option' | 'index' | 'onClickFinish'>
+  Omit<Props, 'option' | 'index' | 'onClickFinish'> & { $ispulsing: boolean }
 >`
   list-style: none;
   padding: ${({ theme }) => `0 ${theme.spacing['3']}`};
@@ -84,6 +83,8 @@ const Component = styled(motion.li)<
     css`
       border: 1px solid ${({ theme }) => theme.colors.black[50]};
     `}
+
+  ${pulseCSS}
 `;
 
 const Key = styled(View)`

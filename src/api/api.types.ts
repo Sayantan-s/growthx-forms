@@ -7,7 +7,10 @@ export interface ApiResponse<T, D> {
 
 type InputTypes = 'input' | 'checkbox' | 'radio' | 'datalist' | 'phone';
 export interface UserInputChecks {
-  [key: string]: boolean | number;
+  [key: string]: {
+    value: boolean | number | string;
+    message?: string;
+  };
 }
 
 interface InputConfiguration {
@@ -52,11 +55,12 @@ export interface InputConfigurationPhone {
   withCountryCode: boolean;
 }
 
-export type InputConfig<T> = InputConfiguration & T;
+export type InputConfig<T = unknown> = InputConfiguration & T;
 
 export interface UserInput {
   checks: UserInputChecks;
   type: InputTypes;
+  block_next?: boolean;
   inputConfig: InputConfig<
     | InputConfigurationTextField
     | InputConfigurationDataList

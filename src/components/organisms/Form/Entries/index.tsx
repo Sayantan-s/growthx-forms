@@ -5,6 +5,7 @@ import { Button } from './Button';
 import { Controls } from './Controls';
 import { DataInput } from './DataInput';
 import { Descriptor } from './Descriptor';
+import { Error } from './Error';
 import { Heading } from './Heading';
 import { Indicator } from './Indicator';
 import { InputField } from './InputField';
@@ -39,6 +40,7 @@ export const Entries = Object.assign(Root, {
   Indicator,
   Controls,
   Heading,
+  Error,
 });
 
 const GrowthXEntry = styled(motion.div)`

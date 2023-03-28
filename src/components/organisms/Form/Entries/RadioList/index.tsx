@@ -1,9 +1,10 @@
 import { InputConfig, InputConfigurationRadio } from '@/api/api.types';
-import { Button, Text, TextField, View } from '@/components/atoms';
+import { Text, TextField, View } from '@/components/atoms';
 import { motion } from 'framer-motion';
 import React, { FC, useState } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import { useFormContext } from '../..';
+import { Button } from '../Button';
 import { Option, alphabets } from '../Option';
 
 export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
@@ -15,15 +16,9 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
   const [showInput, setShowInput] = useState(false);
   const [selected, setSelected] = useState(formState[name]);
   const [value, setValue] = useState(formState[name]);
-  const theme = useTheme();
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (eve) =>
     setValue(eve.target.value);
-
-  const handleShowInput = () => setShowInput(true);
-
-  const handleClick = (option: string) =>
-    setSelected((prevState) => (prevState === option ? '' : option));
 
   const handleSubmitOthers: React.MouseEventHandler<HTMLButtonElement> = (
     eve
@@ -36,33 +31,40 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
     }
   };
 
+  const handleShowInput = () => setShowInput(true);
+
+  const handleClick = (option: string) => {
+    setSelected((prevState) => (prevState === option ? '' : option));
+  };
+
   const onClickFinish = (option: string) => {
-    console.log(option);
-    if (option === selected) onSelect(name, option);
+    onSelect(name, option);
   };
 
   return (
-    <View type="stack">
-      <RadioListContent>
-        <Option.Content>
-          {options.map(({ option, id }, index) => (
-            <Option
-              option={option}
-              index={index}
-              key={id}
-              onClick={() => handleClick(option)}
-              onClickFinish={onClickFinish}
-              selected={selected === option}
-            />
-          ))}
-          <InputOption onClick={handleShowInput}>
-            <View type="stack" gap="2">
-              <KeyPad>{alphabets[options.length]}</KeyPad>
-              <Text>Others</Text>
-            </View>
-          </InputOption>
-        </Option.Content>
-      </RadioListContent>
+    <View>
+      <View type="stack">
+        <RadioListContent>
+          <Option.Content>
+            {options.map(({ option, id }, index) => (
+              <Option
+                option={option}
+                index={index}
+                key={id}
+                onClick={() => handleClick(option)}
+                onClickFinish={onClickFinish}
+                selected={selected === option}
+              />
+            ))}
+            <InputOption onClick={handleShowInput}>
+              <View type="stack" gap="2">
+                <KeyPad>{alphabets[options.length]}</KeyPad>
+                <Text>Others</Text>
+              </View>
+            </InputOption>
+          </Option.Content>
+        </RadioListContent>
+      </View>
     </View>
   );
 };
