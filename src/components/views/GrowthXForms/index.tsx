@@ -60,9 +60,7 @@ export const GrowthXForms = ({
                             <React.Fragment>
                               {data.questions.length === step + 1 ? (
                                 <React.Fragment>
-                                  <Form.Entries.Button
-                                    onClick={handleIncrement}
-                                  >
+                                  <Form.Entries.Button type="submit">
                                     Submit
                                   </Form.Entries.Button>
                                   <Form.Entries.Indicator indicate="Cmd ⌘ + Enter ↵" />

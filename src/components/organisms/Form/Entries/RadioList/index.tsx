@@ -12,7 +12,7 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
   others,
   name,
 }) => {
-  const { handleSelect: onSelect, formState } = useFormContext();
+  const { handleSelect, formState } = useFormContext();
   const [showInput, setShowInput] = useState(false);
   const [selected, setSelected] = useState(formState[name]);
   const [value, setValue] = useState(formState[name]);
@@ -27,7 +27,7 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
     if (!value) {
       setShowInput(false);
     } else {
-      onSelect(name, value);
+      handleSelect(name, value);
     }
   };
 
@@ -35,10 +35,13 @@ export const RadioList: FC<InputConfig<InputConfigurationRadio>> = ({
 
   const handleClick = (option: string) => {
     setSelected((prevState) => (prevState === option ? '' : option));
+    if (selected) {
+      handleSelect(name, '');
+    }
   };
 
   const onClickFinish = (option: string) => {
-    onSelect(name, option);
+    handleSelect(name, option, { toNext: true });
   };
 
   return (

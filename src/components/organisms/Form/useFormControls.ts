@@ -17,27 +17,54 @@ export type FormState = { [key: string]: string | null };
 
 const initialState = (hasOnboarding: boolean) => (hasOnboarding ? -1 : 0);
 
+function isValidEmail(email: string) {
+  const pattern =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  return pattern.test(email);
+}
+
+function isTaskSpecificEmail(email: string) {
+  const taskPattern = /^[a-zA-Z]+[\w-]*\+[a-zA-Z0-9._-]+@([\w-]+\.)+[\w-]{2,}$/;
+  return taskPattern.test(email);
+}
+
 function validator(
   input: UserInput,
-  val: InitialState | string
+  val: string | null,
+  formState: InitialState
 ): string | undefined {
   if (!input) return;
   const {
     checks,
     inputConfig: { name },
   } = input;
-  const value = typeof val === 'string' ? val : val[name];
-  if (checks.required.value && value.trim() === '') {
+  const value = typeof val === 'string' ? val : formState[name];
+  if (checks.required.value && value.trim() === '')
     return checks.required.message;
+
+  if (
+    checks?.email?.value &&
+    (!isValidEmail(value) ||
+      (isValidEmail(value) && isTaskSpecificEmail(value)))
+  )
+    return checks.email.message;
+
+  if (
+    checks?.choose?.value &&
+    'options' in input.inputConfig &&
+    'variable' in input.inputConfig.options &&
+    checks.choose.value !==
+      JSON.parse(value)[formState[input.inputConfig.options.variable]].length
+  ) {
+    return checks.choose.message;
   }
   if (
     checks?.shouldBeAnOption?.value &&
     (
       input.inputConfig as InputConfig<InputConfigurationDataList>
     ).options.findIndex(({ option }) => value === option) === -1
-  ) {
+  )
     return checks.shouldBeAnOption.message;
-  }
 }
 
 export const useFormControls = ({
@@ -61,7 +88,8 @@ export const useFormControls = ({
     (value?: string) => {
       const errorMessage = validator(
         questions[formStep]?.userinput,
-        typeof value === 'string' ? value : formState
+        typeof value === 'string' ? value : null,
+        formState
       );
       const name = questions[formStep]?.userinput.inputConfig.name;
       if (errorMessage)

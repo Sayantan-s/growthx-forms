@@ -38,7 +38,7 @@ export const Datalist: FC<InputConfig<InputConfigurationDataList>> = ({
 
   const onSubmit = () => {
     if (hasSelected && showSelected) {
-      handleSelect(rest.name, showSelected);
+      handleSelect(rest.name, showSelected, { toNext: true });
     }
     setSelected(false);
   };
@@ -115,7 +115,7 @@ const StyledDatalistOptions = styled(motion.div)`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.black[900]};
   overflow-y: scroll;
-  height: 40rem;
+  max-height: 40rem;
 `;
 
 export const StyledDatalistOption = styled(motion.li)<{ $ispulsing: boolean }>`

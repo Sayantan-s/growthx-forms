@@ -1,8 +1,10 @@
+import { postFormPayload } from '@/api';
 import { ApiResponse, OnboardingType, QnaType } from '@/api/api.types';
 import { PersistenceManager, isClientSide } from '@/utils';
 import {
   FormEvent,
   FormEventHandler,
+  MutableRefObject,
   createContext,
   useCallback,
   useContext,
@@ -32,14 +34,39 @@ export type FormContextProps = FormStepProps &
   FormProps['payload'] & {
     formState: InitialState;
     handleChange: (eve: FormEvent<HTMLElement>) => void;
-    handleSelect: (name: string, value: string) => void;
+    handleSelect: (
+      name: string,
+      value: string,
+      movement?: {
+        toNext: boolean;
+      }
+    ) => void;
     persist: boolean;
     error: FormState;
+    formSubmitState: FormSubmission;
   };
 
 export type InitialState = { [key: string]: string };
 
+export type FormSubmission = 'idle' | 'loading' | 'success' | 'failed';
+
 const FormContext = createContext({} as FormContextProps);
+
+const createInitialState = (
+  questions: QnaType[],
+  persistenceManagerRef: MutableRefObject<PersistenceManager<InitialState>>,
+  persist: boolean
+) => {
+  const content = questions.reduce((acc, question) => {
+    const key = question.userinput.inputConfig.name;
+    if (persist && isClientSide()) {
+      const persistedData = persistenceManagerRef.current.get();
+      acc[key] = persistedData ? persistedData[key] : '';
+    } else acc[key] = '';
+    return acc;
+  }, {} as InitialState);
+  return content;
+};
 
 const Root = ({
   children,
@@ -50,17 +77,12 @@ const Root = ({
     new PersistenceManager<InitialState>('state')
   );
 
-  const [initialState, setInitialState] = useState(() => {
-    const content = questions.reduce((acc, question) => {
-      const key = question.userinput.inputConfig.name;
-      if (persist && isClientSide()) {
-        const persistedData = peristenceManagerRef.current.get();
-        acc[key] = persistedData ? persistedData[key] : '';
-      } else acc[key] = '';
-      return acc;
-    }, {} as InitialState);
-    return content;
-  });
+  const [initialState, setInitialState] = useState(() =>
+    createInitialState(questions, peristenceManagerRef, persist)
+  );
+
+  const [formSubmitState, setFormSubmitState] =
+    useState<FormSubmission>('idle');
 
   const {
     formStep,
@@ -93,7 +115,7 @@ const Root = ({
   );
 
   const handleSelect = useCallback(
-    (name: string, value: string) => {
+    (name: string, value: string, movement?: { toNext: boolean }) => {
       setInitialState((prevState) => ({
         ...prevState,
         [name]: value,
@@ -104,14 +126,29 @@ const Root = ({
           ...initialState,
           [name]: value,
         });
-      handleIncrement(value);
+      movement?.toNext && handleIncrement(value);
     },
     [setError, persist, initialState, handleIncrement]
   );
 
-  const handleSubmit: FormEventHandler = useCallback((eve) => {
-    eve.preventDefault();
-  }, []);
+  const handleSubmit: FormEventHandler = useCallback(
+    async (eve) => {
+      eve.preventDefault();
+      setFormSubmitState('loading');
+      try {
+        await postFormPayload(initialState);
+        setFormSubmitState('success');
+        setInitialState(
+          createInitialState(questions, peristenceManagerRef, persist)
+        );
+      } catch (error) {
+        setFormSubmitState('failed');
+      } finally {
+        setFormSubmitState('idle');
+      }
+    },
+    [initialState, persist, questions]
+  );
 
   return (
     <FormContext.Provider
@@ -127,6 +164,7 @@ const Root = ({
         progress,
         persist,
         error,
+        formSubmitState,
       }}
     >
       <Container>

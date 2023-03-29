@@ -82,3 +82,17 @@ export interface OnboardingType {
   description: string;
   buttonText: string;
 }
+
+type FormSubmissionKeys =
+  | 'about'
+  | 'event_id'
+  | 'workflow_id'
+  | 'owner_id'
+  | 'deployment_id'
+  | 'timestamp'
+  | 'inspect'
+  | 'quickstart';
+
+export type FormSubmissionApiResponse = {
+  [Key in FormSubmissionKeys]: string;
+};

@@ -3,30 +3,31 @@ import {
   InputConfigurationCheckbox,
   UserInputChecks,
 } from '@/api/api.types';
-import { View } from '@/components/atoms';
+import { Text, View } from '@/components/atoms';
 import { FC, useMemo, useState } from 'react';
-import styled, { css, useTheme } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useFormContext } from '../..';
 import { Option } from '../Option';
-
-const alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 interface Props extends InputConfig<InputConfigurationCheckbox> {
   checks: UserInputChecks;
 }
 
 export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
-  const {
-    handleSelect: onSelect,
-    formState,
-    handleIncrement,
-  } = useFormContext();
-  const theme = useTheme();
+  const { handleSelect, formState } = useFormContext();
+  const [selected, setSelected] = useState<string[]>(() => {
+    if (formState[name] && 'variable' in options) {
+      const value = formState[name];
+      return JSON.parse(value)[formState[options.variable]] || [];
+    }
+    return [];
+  });
 
-  const [selected, setSelected] = useState<string[]>([]);
-  const [hasSelected, setHasSelected] = useState(false);
+  const choose = checks.choose.value as number;
 
-  const [disableOptions, setDisableOptions] = useState(false);
+  const [disableOptions, setDisableOptions] = useState(
+    selected.length === choose
+  );
 
   const checkboxOptions = useMemo(
     () =>
@@ -37,18 +38,33 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
   );
 
   const onAnimationComplete = () => {
-    // trigger selection when the blinking animation completes
-    // if (selected.length === checks.choose.value) {
-    //   onSelect(name, selected.join(','));
-    // }
-
-    console.log('HELLO');
+    handleSelect(
+      name,
+      'variable' in options
+        ? JSON.stringify({ [formState[options.variable]]: selected })
+        : JSON.stringify(selected),
+      { toNext: selected.length === choose }
+    );
   };
+
+  console.log(selected);
 
   // console.log(selected.length, checks); // Double check the localstorage when the user changes role. !important
 
-  const handleSelect = (option: string) => {
-    const choosables = [...selected, option];
+  const onClick = (option: string) => {
+    let choosables = [];
+    if (selected.includes(option)) {
+      choosables = selected.filter((prevOption) => prevOption !== option);
+      'variable' in options &&
+        handleSelect(
+          name,
+          choosables.length
+            ? JSON.stringify({ [formState[options.variable]]: choosables })
+            : ''
+        );
+    } else {
+      choosables = [...selected, option];
+    }
     setSelected(choosables);
     setDisableOptions(choosables.length === checks.choose.value);
   };
@@ -57,13 +73,20 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
     <View>
       <CheckboxList type="stack">
         <CheckboxlistContent>
+          <StyledText fontSize="1">
+            {choose - selected.length
+              ? `Choose ${choose - selected.length} ${
+                  choose - selected.length < choose ? 'more' : ''
+                }`
+              : null}
+          </StyledText>
           <CheckboxOptionContent>
             {checkboxOptions.map(({ option, id }, index) => (
               <CheckboxOption
                 option={option}
                 key={id}
                 onClickFinish={onAnimationComplete}
-                onClick={() => handleSelect(option)}
+                onClick={() => onClick(option)}
                 selected={selected.includes(option)}
                 disabled={!selected.includes(option) && disableOptions}
                 index={index}
@@ -95,4 +118,8 @@ const CheckboxList = styled(View)`
 const CheckboxlistContent = styled(View)`
   width: 100%;
   margin: ${({ theme }) => `${theme.spacing['3']} 0`};
+`;
+
+const StyledText = styled(Text)`
+  height: ${({ theme }) => theme.spacing['8']};
 `;
