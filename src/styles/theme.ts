@@ -1,5 +1,16 @@
 import { DefaultTheme } from 'styled-components';
 
+interface StyleReducerProps {
+  fromZero: boolean;
+}
+
+function styleReducer(arr: number[], options?: StyleReducerProps) {
+  return arr.reduce((acc, value, index) => {
+    acc[`${options?.fromZero ? index : index + 1}`] = `${value / 10}rem`;
+    return acc;
+  }, {} as Record<`${number}`, `${number}rem`>);
+}
+
 export const theme: DefaultTheme = {
   colors: {
     red: {
@@ -40,23 +51,20 @@ export const theme: DefaultTheme = {
     },
   },
   fontWeights: {
+    thin: 300,
     body: 400,
-    heading: 700,
+    heading: 500,
     bold: 700,
   },
-  fontSize: {
-    1: '1.4rem',
-    2: '1.8rem',
-    3: '2rem',
-    4: '2.5rem',
-    5: '3rem',
-    6: '3.5rem',
-    7: '4rem',
-  },
+  fontSize: styleReducer([14, 18, 20, 25, 30, 35, 40]),
+  spacing: styleReducer(
+    [0, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100],
+    {
+      fromZero: true,
+    }
+  ),
   lineHeights: {
     body: 1.5,
     heading: 1.125,
   },
 };
-
-export type Theme = typeof theme;

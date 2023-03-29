@@ -18,8 +18,9 @@ export const GlobalStyles = createGlobalStyle`
     body{
         font-size: ${({ theme }) => theme.fontSize['2']};
         height: 100vh;
-        overflow: hidden;
         color: ${({ theme }) => theme.colors.black[50]};
+        font-weight:  ${({ theme }) => theme.fontWeights.thin};
+        overflow: hidden;
     }
 
     #__next{
