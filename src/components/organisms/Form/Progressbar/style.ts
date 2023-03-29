@@ -7,7 +7,7 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Bar = styled.div`
+export const Bar = styled(motion.div)`
   height: 100%;
   background-color: ${({ theme }) => `${theme.colors.blue[500]}50`};
 `;
@@ -18,4 +18,5 @@ export const Progress = styled(motion.div)`
   top: 0;
   left: 0;
   background-color: ${({ theme }) => theme.colors.blue[500]};
+  width: 100%;
 `;

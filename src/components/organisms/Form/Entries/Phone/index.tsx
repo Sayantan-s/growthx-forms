@@ -4,7 +4,7 @@ import {
   UserInputChecks,
 } from '@/api/api.types';
 import { TextField, View } from '@/components/atoms';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { useFormContext } from '../..';
 import FlagSearch from './FlagSearch';
@@ -15,10 +15,12 @@ interface Props extends InputConfig<InputConfigurationPhone> {
 
 export const Phone: FC<Props> = ({ checks, withCountryCode, ...rest }) => {
   const { formState, handleChange } = useFormContext();
+  const [dialCode, setDialcode] = useState<string | null>(null);
+
   return (
     <Content>
       <PhoneContainer type="stack" gap="3">
-        <FlagSearch onGetDialCode={(dialCode) => console.log(dialCode)} />
+        <FlagSearch onGetDialCode={setDialcode} />
         <StyledTextField
           {...rest}
           onChange={handleChange}

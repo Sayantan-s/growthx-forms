@@ -12,6 +12,7 @@ import { InputField } from './InputField';
 import { Onboarding } from './Onboarding';
 import { Panel } from './Panel';
 import { Panels } from './Panels';
+import { Submission } from './Submission';
 
 interface Props {
   children: (props: FormContextProps) => JSX.Element;
@@ -41,6 +42,7 @@ export const Entries = Object.assign(Root, {
   Controls,
   Heading,
   Error,
+  Submission,
 });
 
 const GrowthXEntry = styled(motion.div)`

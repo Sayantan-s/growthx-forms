@@ -3,11 +3,11 @@ import { ApiResponse, OnboardingType, QnaType } from '@/api/api.types';
 import { PersistenceManager, isClientSide } from '@/utils';
 import {
   FormEvent,
-  FormEventHandler,
   MutableRefObject,
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -44,6 +44,7 @@ export type FormContextProps = FormStepProps &
     persist: boolean;
     error: FormState;
     formSubmitState: FormSubmission;
+    handleSubmit: (eve?: FormEvent<HTMLElement>) => Promise<void>;
   };
 
 export type InitialState = { [key: string]: string };
@@ -131,12 +132,13 @@ const Root = ({
     [setError, persist, initialState, handleIncrement]
   );
 
-  const handleSubmit: FormEventHandler = useCallback(
-    async (eve) => {
-      eve.preventDefault();
+  const handleSubmit = useCallback(
+    async (eve?: FormEvent<HTMLElement>) => {
+      eve?.preventDefault();
       setFormSubmitState('loading');
       try {
         await postFormPayload(initialState);
+        handleIncrement();
         setFormSubmitState('success');
         setInitialState(
           createInitialState(questions, peristenceManagerRef, persist)
@@ -147,8 +149,26 @@ const Root = ({
         setFormSubmitState('idle');
       }
     },
-    [initialState, persist, questions]
+    [initialState, persist, questions, handleIncrement]
   );
+
+  useEffect(() => {
+    async function onWindowKeyPress(eve: KeyboardEvent) {
+      if (
+        formStep === questions.length - 1 &&
+        eve.keyCode === 13 &&
+        eve.metaKey
+      ) {
+        handleSubmit();
+      } else if (formStep < questions.length - 1 && eve.keyCode === 13) {
+        handleIncrement();
+      }
+    }
+    window.addEventListener('keydown', onWindowKeyPress);
+    return () => {
+      window.removeEventListener('keydown', onWindowKeyPress);
+    };
+  }, [formStep, handleIncrement, handleSubmit, questions.length]);
 
   return (
     <FormContext.Provider
@@ -165,6 +185,7 @@ const Root = ({
         persist,
         error,
         formSubmitState,
+        handleSubmit,
       }}
     >
       <Container>

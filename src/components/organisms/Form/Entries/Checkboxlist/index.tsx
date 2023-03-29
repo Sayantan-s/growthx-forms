@@ -47,10 +47,6 @@ export const Checkboxlist: FC<Props> = ({ options, name, checks }) => {
     );
   };
 
-  console.log(selected);
-
-  // console.log(selected.length, checks); // Double check the localstorage when the user changes role. !important
-
   const onClick = (option: string) => {
     let choosables = [];
     if (selected.includes(option)) {

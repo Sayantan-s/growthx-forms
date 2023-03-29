@@ -1,11 +1,20 @@
 import { fetchCountryData } from '@/api';
-import { Button, Text, TextField, View } from '@/components/atoms';
+import { Text, TextField, View } from '@/components/atoms';
+import { useClickOutside } from '@/hooks';
 import { CountryData } from '@/pages/api/countrydata';
 import { PersistenceManager } from '@/utils';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import DOMPurify from 'isomorphic-dompurify';
 import Image from 'next/image';
-import { FC, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  FC,
+  MouseEventHandler,
+  memo,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import styled from 'styled-components';
 import { useFormContext } from '../..';
 
@@ -32,9 +41,14 @@ const FlagSearch: FC<Props> = ({ onGetDialCode }) => {
   const [dialCode, setDialCode] = useState(
     () => persistCode.current.get()?.countryDialCode || ''
   );
-  const { persist } = useFormContext();
-
   const [showFlags, setShowFlags] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+  useClickOutside(ref, () => {
+    setShowFlags(false);
+  });
+
+  const { persist } = useFormContext();
 
   useEffect(() => {
     async function fetchFlags() {
@@ -48,7 +62,12 @@ const FlagSearch: FC<Props> = ({ onGetDialCode }) => {
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (eve) =>
     setSearch(eve.target.value);
-  const handleShow = () => setShowFlags(true);
+
+  const handleShow: MouseEventHandler<HTMLButtonElement> = (eve) => {
+    eve.stopPropagation();
+    eve.preventDefault();
+    setShowFlags(true);
+  };
 
   const filterOptions = useMemo(() => {
     const options = Object.entries(flags);
@@ -105,7 +124,12 @@ const FlagSearch: FC<Props> = ({ onGetDialCode }) => {
       </Panel>
       <AnimatePresence>
         {showFlags ? (
-          <SearchResults>
+          <SearchResults
+            ref={ref}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 10, opacity: 0 }}
+          >
             <StyledTextField
               name="search"
               type="text"
@@ -158,9 +182,10 @@ const FlagSearch: FC<Props> = ({ onGetDialCode }) => {
   );
 };
 
-export default FlagSearch;
+export default memo(FlagSearch);
 
-const Panel = styled(Button)`
+const Panel = styled(View)`
+  cursor: pointer;
   background-color: transparent;
   box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
   padding: ${({ theme }) => `${theme.spacing['2']} 0`};
@@ -180,7 +205,7 @@ const Container = styled(View)`
   margin: ${({ theme }) => `${theme.spacing['3']} 0`};
 `;
 
-const SearchResults = styled(View)`
+const SearchResults = styled(motion.div)`
   position: absolute;
   width: 100%;
   overflow: hidden;

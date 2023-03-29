@@ -8,7 +8,11 @@ interface Props {
 
 export const Error: FC<Props> = ({ children }) => {
   return (
-    <StyledError type="stack">
+    <StyledError
+      type="stack"
+      initial={{ y: 10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+    >
       <svg height={24} viewBox="0 0 24 24" width={24}>
         <path
           clipRule="evenodd"

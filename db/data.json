@@ -787,11 +787,7 @@
           "withCountryCode": true
         },
         "checks": {
-          "required": { "value": true, "message": "Please Fill this in" },
-          "email": {
-            "value": true,
-            "message": "Hmm... that phone number doesn't look right"
-          }
+          "required": { "value": true, "message": "Please Fill this in" }
         }
       },
       "id": "dbfb7a01-4df1-470b-82f5-5815a62da4cd"

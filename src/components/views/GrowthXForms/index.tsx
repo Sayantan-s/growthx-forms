@@ -20,6 +20,8 @@ export const GrowthXForms = ({
             error,
             formState,
             step,
+            handleSubmit,
+            formSubmitState,
           }) => (
             <Form.Entries.Panels>
               <Form.Entries.Onboarding>
@@ -60,8 +62,13 @@ export const GrowthXForms = ({
                             <React.Fragment>
                               {data.questions.length === step + 1 ? (
                                 <React.Fragment>
-                                  <Form.Entries.Button type="submit">
-                                    Submit
+                                  <Form.Entries.Button
+                                    type="submit"
+                                    onClick={handleSubmit}
+                                  >
+                                    {formSubmitState === 'loading'
+                                      ? 'Loading...'
+                                      : 'Submit'}
                                   </Form.Entries.Button>
                                   <Form.Entries.Indicator indicate="Cmd ⌘ + Enter ↵" />
                                 </React.Fragment>
@@ -86,6 +93,9 @@ export const GrowthXForms = ({
                   </Form.Entries.Panel>
                 ))}
               </Form.Entries.DataInput>
+              <Form.Entries.Submission>
+                All done! Thanks for your time.
+              </Form.Entries.Submission>
             </Form.Entries.Panels>
           )}
         </Form.Entries>
@@ -93,34 +103,3 @@ export const GrowthXForms = ({
     </Main>
   );
 };
-
-/*
-
-OUTPUT DATASTRUCTURE
-
-First Name: Sayantan
-Last Name: Samanta
-Industry of Company: Primary/Secondary Education
-Role: VC
-Professional Goal: Connect with like-minded people, Get hired
-Email: sssamanta789@gmail.com
-Phone: +919163456288
-
-*/
-
-/*
-FLAGS
-
-api=https://flagcdn.com/en/codes.json
-srcset ="https://flagcdn.com/32x24/za.png 2x,
-    https://flagcdn.com/48x36/za.png 3x"
-src = https://flagcdn.com/16x12/za.png
-
-*/
-
-/*
-COMPANY LIST
-
-companys.txt
-
-*/

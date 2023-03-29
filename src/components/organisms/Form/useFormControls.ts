@@ -4,7 +4,7 @@ import {
   QnaType,
   UserInput,
 } from '@/api/api.types';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { InitialState } from '.';
 
 interface Props {
@@ -26,6 +26,11 @@ function isValidEmail(email: string) {
 function isTaskSpecificEmail(email: string) {
   const taskPattern = /^[a-zA-Z]+[\w-]*\+[a-zA-Z0-9._-]+@([\w-]+\.)+[\w-]{2,}$/;
   return taskPattern.test(email);
+}
+
+function isValidPhoneNumber(num: string) {
+  const pattern = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+  return pattern.test(num);
 }
 
 function validator(
@@ -58,6 +63,10 @@ function validator(
   ) {
     return checks.choose.message;
   }
+
+  if (checks?.number?.value && isValidPhoneNumber(value))
+    return checks.number.message;
+
   if (
     checks?.shouldBeAnOption?.value &&
     (
@@ -114,18 +123,6 @@ export const useFormControls = ({
     );
     setProgress((prevState) => prevState - 1);
   };
-
-  useEffect(() => {
-    function onWindowKeyPress(eve: KeyboardEvent) {
-      if (eve.keyCode === 13) {
-        handleIncrement();
-      }
-    }
-    window.addEventListener('keypress', onWindowKeyPress);
-    return () => {
-      window.removeEventListener('keypress', onWindowKeyPress);
-    };
-  }, [handleIncrement]);
 
   return {
     formStep,
