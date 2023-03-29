@@ -25,7 +25,7 @@ export const Heading = forwardRef<
       : children;
   }, [step, questions, children, formState]);
 
-  const checks = step > -1 ? questions[step].userinput.checks : null;
+  const checks = step > -1 ? questions[step]?.userinput.checks : null;
 
   return (
     <StyledQuestion as={as} checks={checks} {...props} ref={ref}>
