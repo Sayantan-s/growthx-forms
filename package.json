@@ -27,6 +27,7 @@
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-is": "^18.2.0",
     "styled-components": "^5.3.9",
     "typescript": "5.0.2"
   },
@@ -36,9 +37,13 @@
     "@types/lodash": "^4.14.191",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "is-ci": "^3.0.1",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.6",
     "ts-node": "^10.9.1"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }
