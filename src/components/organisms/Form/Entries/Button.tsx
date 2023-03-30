@@ -43,6 +43,9 @@ const StyledButton = styled(B)`
   align-items: center;
   justify-content: center;
   gap: ${({ theme }) => theme.spacing['3']};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.blue[500]};
+  }
   svg {
     fill: ${({ theme }) => theme.colors.blue[50]};
   }
