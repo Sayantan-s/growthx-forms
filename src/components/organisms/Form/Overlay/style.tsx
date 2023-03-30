@@ -42,5 +42,5 @@ export const Progress = styled(motion.div)`
 `;
 
 export const StyledView = styled(View)`
-  width: 30%;
+  width: 20rem;
 `;
