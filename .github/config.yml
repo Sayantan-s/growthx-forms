@@ -1,0 +1,37 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+      - ci
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          password: ${{ secrets.DOCKER_HUB_USERNAME }}
+
+      # - name: Build and Push Docker Image
+      #   run: |
+      #     docker-compose -f docker-compose.yml build
+      #     docker tag nextjs-app ${{ secrets.DOCKER_USERNAME }}/nextjs-app:${{ github.sha }}
+      #     docker push ${{ secrets.DOCKER_USERNAME }}/nextjs-app:${{ github.sha }}
+
+      # - name: Deploy to Cloudflare Pages
+      #   uses: cloudflare/pages-deploy@v3
+      #   with:
+      #     CF_PAGES_API_TOKEN: ${{ secrets.CF_PAGES_API_TOKEN }}
+      #     CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      #     CF_PAGES_SPACE_ID: ${{ secrets.CF_PAGES_SPACE_ID }}
+      #     CF_PAGES_SITE_ID: ${{ secrets.CF_PAGES_SITE_ID }}
+      #     BUILD_COMMAND: 'docker-compose -f docker-compose.yml up'
+      #     BUILD_DIR: '.'
+      #     DEPLOYMENT_URL: '<your production deployment URL>'
