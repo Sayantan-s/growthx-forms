@@ -58,7 +58,7 @@ export const theme: DefaultTheme = {
   },
   fontSize: styleReducer([14, 18, 20, 25, 30, 35, 40]),
   spacing: styleReducer(
-    [0, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100],
+    [0, 5, 8, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 72, 80, 90, 100],
     {
       fromZero: true,
     }
@@ -67,4 +67,10 @@ export const theme: DefaultTheme = {
     body: 1.5,
     heading: 1.125,
   },
+};
+
+export const breakpoints = {
+  desktop: '1024px',
+  tab: '768px',
+  mobile: '480px',
 };

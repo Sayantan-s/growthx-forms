@@ -13,12 +13,14 @@ interface Props {
 
 export const variants = {
   initial: (scrollDirection: ScrollDirection) => ({
-    translateY: scrollDirection === 'downward' ? '70vh' : '-70vh',
+    translateY:
+      !scrollDirection || scrollDirection === 'downward' ? '70vh' : '-70vh',
     opacity: 0,
   }),
   animate: { translateY: 0, opacity: 1 },
   exit: (scrollDirection: ScrollDirection) => ({
-    translateY: scrollDirection === 'downward' ? '-70vh' : '70vh',
+    translateY:
+      !scrollDirection || scrollDirection === 'downward' ? '-70vh' : '70vh',
     opacity: 0,
   }),
 };

@@ -59,7 +59,7 @@ function validator(
     'options' in input.inputConfig &&
     'variable' in input.inputConfig.options &&
     checks.choose.value !==
-      JSON.parse(value)[formState[input.inputConfig.options.variable]].length
+      JSON.parse(value)[formState[input.inputConfig.options.variable]]?.length
   ) {
     return checks.choose.message;
   }

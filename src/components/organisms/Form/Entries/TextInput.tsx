@@ -1,6 +1,7 @@
 import { UserInputChecks } from '@/api/api.types';
 import { TextField, View } from '@/components/atoms';
 import { Props as TextFieldProps } from '@/components/atoms/TextField/types';
+import { breakpoints } from '@/styles/theme';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 import { useFormContext } from '..';
@@ -27,6 +28,7 @@ TextInput.displayName = 'Form.Entries.TextInput';
 
 const StyledTextField = styled(TextField)`
   box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
+  -webkit-box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
   outline: none;
   transition: 0.2s box-shadow;
   padding: ${({ theme }) => `${theme.spacing['2']} 0`};
@@ -40,5 +42,8 @@ const StyledTextField = styled(TextField)`
   }
   &::placeholder {
     color: ${({ theme }) => theme.colors.black[700]};
+  }
+  @media (max-width: ${breakpoints.tab}) {
+    font-size: ${({ theme }) => theme.fontSize['4']};
   }
 `;

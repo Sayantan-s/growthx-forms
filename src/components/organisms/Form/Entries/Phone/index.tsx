@@ -4,6 +4,7 @@ import {
   UserInputChecks,
 } from '@/api/api.types';
 import { TextField, View } from '@/components/atoms';
+import { breakpoints } from '@/styles/theme';
 import { FC, useState } from 'react';
 import styled from 'styled-components';
 import { useFormContext } from '../..';
@@ -34,6 +35,7 @@ export const Phone: FC<Props> = ({ checks, withCountryCode, ...rest }) => {
 const StyledTextField = styled(TextField)`
   max-width: 100%;
   box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
+  -webkit-box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
   outline: none;
   transition: 0.2s box-shadow;
   padding: ${({ theme }) => `${theme.spacing['2']} 0`};
@@ -57,4 +59,7 @@ const PhoneContainer = styled(View)`
 const Content = styled.div`
   position: relative;
   max-width: 60%;
+  @media (max-width: ${breakpoints.tab}) {
+    max-width: 100%;
+  }
 `;

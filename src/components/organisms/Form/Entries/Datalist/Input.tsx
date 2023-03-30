@@ -1,5 +1,6 @@
 import { Button, TextField, View } from '@/components/atoms';
 import { Props as TextFieldProps } from '@/components/atoms/TextField/types';
+import { breakpoints } from '@/styles/theme';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
 import styled from 'styled-components';
@@ -43,6 +44,9 @@ const StyledTextField = styled(TextField)`
   &::placeholder {
     color: ${({ theme }) => theme.colors.black[700]};
   }
+  @media (max-width: ${breakpoints.tab}) {
+    font-size: ${({ theme }) => theme.fontSize['4']};
+  }
 `;
 
 const StyledContent = styled(View)`
@@ -55,6 +59,7 @@ const StyledContent = styled(View)`
 const InputContainer = styled.div`
   width: 100%;
   box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
+  -webkit-box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
   margin: ${({ theme }) => `${theme.spacing['3']} 0`};
   &:focus-within {
     box-shadow: ${({ theme }) => `${theme.colors.black[100]} 0px 2px`};

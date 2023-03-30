@@ -14,6 +14,7 @@ import {
 import styled from 'styled-components';
 import { Entries } from './Entries';
 import { Header } from './Header';
+import { Overlay } from './Overlay';
 import { Progressbar } from './Progressbar';
 import { FormState, useFormControls } from './useFormControls';
 
@@ -143,6 +144,7 @@ const Root = ({
         setInitialState(
           createInitialState(questions, peristenceManagerRef, persist)
         );
+        peristenceManagerRef.current.clear();
       } catch (error) {
         setFormSubmitState('failed');
       } finally {
@@ -201,7 +203,12 @@ export const useFormContext = () => {
   return context;
 };
 
-export const Form = Object.assign(Root, { Progressbar, Entries, Header });
+export const Form = Object.assign(Root, {
+  Progressbar,
+  Entries,
+  Header,
+  Overlay,
+});
 
 const Container = styled.div`
   height: inherit;

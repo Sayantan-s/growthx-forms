@@ -1,7 +1,8 @@
+import { View } from '@/components/atoms';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled(View)`
   width: 100%;
   height: 4px;
   position: relative;
