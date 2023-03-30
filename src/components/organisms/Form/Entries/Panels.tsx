@@ -28,9 +28,10 @@ export const Panels = ({ children }: Props) => {
   ] = useWheelScroll();
 
   useEffect(() => {
-    if (scrolling === 'downward' && step < questions.length - 1)
-      handleIncrement();
-    else if (scrolling === 'upward') handleDecrement();
+    if (step < questions.length - 1) {
+      if (scrolling === 'downward') handleIncrement();
+      else if (scrolling === 'upward') handleDecrement();
+    }
   }, [scrolling]);
 
   return (
@@ -39,8 +40,8 @@ export const Panels = ({ children }: Props) => {
         type="stack"
         onWheel={onWheel}
         onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
         onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {children}
       </StyledPanel>

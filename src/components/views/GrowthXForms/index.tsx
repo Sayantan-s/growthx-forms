@@ -12,6 +12,7 @@ export const GrowthXForms = ({
       <Form payload={data} persist>
         <Form.Progressbar />
         <Form.Header />
+        <Form.Overlay />
         <Form.Entries>
           {({
             onboarding,
@@ -25,7 +26,7 @@ export const GrowthXForms = ({
           }) => (
             <Form.Entries.Panels>
               <Form.Entries.Onboarding>
-                <Form.Entries.Heading fontSize="4">
+                <Form.Entries.Heading>
                   {onboarding.heading}
                 </Form.Entries.Heading>
                 <Form.Entries.Descriptor>
@@ -41,7 +42,7 @@ export const GrowthXForms = ({
               <Form.Entries.DataInput>
                 {content.map((formContent, index) => (
                   <Form.Entries.Panel key={formContent.id} step={index}>
-                    <Form.Entries.Heading fontSize="4">
+                    <Form.Entries.Heading>
                       {formContent.question}
                     </Form.Entries.Heading>
                     <Form.Entries.Descriptor>
@@ -62,14 +63,14 @@ export const GrowthXForms = ({
                             <React.Fragment>
                               {data.questions.length === step + 1 ? (
                                 <React.Fragment>
-                                  <Form.Entries.Button
+                                  <Form.Entries.SubmitButton
                                     type="submit"
+                                    disabled={formSubmitState === 'loading'}
+                                    isLoading={formSubmitState === 'loading'}
                                     onClick={handleSubmit}
                                   >
-                                    {formSubmitState === 'loading'
-                                      ? 'Loading...'
-                                      : 'Submit'}
-                                  </Form.Entries.Button>
+                                    Submit
+                                  </Form.Entries.SubmitButton>
                                   <Form.Entries.Indicator indicate="Cmd ⌘ + Enter ↵" />
                                 </React.Fragment>
                               ) : (

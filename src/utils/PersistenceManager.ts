@@ -13,4 +13,8 @@ export class PersistenceManager<TData> {
       return peristedData ? (JSON.parse(peristedData) as TData) : null;
     }
   }
+  clear() {
+    const peristedData = localStorage.getItem(this.key);
+    return peristedData ? localStorage.removeItem(this.key) : null;
+  }
 }

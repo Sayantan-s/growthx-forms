@@ -1,4 +1,5 @@
 import { View } from '@/components/atoms';
+import { breakpoints } from '@/styles/theme';
 import { FC } from 'react';
 import styled from 'styled-components';
 
@@ -18,4 +19,9 @@ Controls.displayName = 'Form.Entries.Controls';
 
 const StyledControlPanel = styled(View)`
   margin-top: ${({ theme }) => theme.spacing['3']};
+  @media (max-width: ${breakpoints.tab}) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: ${({ theme }) => theme.spacing['4']};
+  }
 `;

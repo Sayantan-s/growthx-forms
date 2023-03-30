@@ -37,6 +37,7 @@ export const Heading = forwardRef<
 Heading.displayName = 'Form.Entries.Heading';
 
 const StyledQuestion = styled(Text)<{ checks?: UserInputChecks | null }>`
+  font-size: ${({ theme }) => theme.fontSize['3']};
   ${({ checks }) =>
     checks?.required &&
     css`
@@ -44,5 +45,5 @@ const StyledQuestion = styled(Text)<{ checks?: UserInputChecks | null }>`
         content: '*';
         margin-left: ${({ theme }) => theme.spacing['1']};
       }
-    `}
+    `};
 `;

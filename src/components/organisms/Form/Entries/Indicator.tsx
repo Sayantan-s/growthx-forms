@@ -1,4 +1,5 @@
 import { Text } from '@/components/atoms';
+import { breakpoints } from '@/styles/theme';
 import { FC } from 'react';
 import styled from 'styled-components';
 
@@ -18,6 +19,9 @@ Indicator.displayName = 'Form.Entries.Indicator';
 
 const StyledText = styled(Text)`
   font-size: 1rem;
+  @media (max-width: ${breakpoints.tab}) {
+    display: none;
+  }
 `;
 
 const StyledIndicator = styled(Text)`

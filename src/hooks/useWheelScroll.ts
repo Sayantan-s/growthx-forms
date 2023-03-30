@@ -1,9 +1,15 @@
-import { TouchEventHandler, WheelEventHandler, useRef, useState } from 'react';
+import {
+  TouchEventHandler,
+  WheelEventHandler,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 export type ScrollDirection = 'upward' | 'downward' | false;
 
 export const useWheelScroll = (): [
-  number,
+  boolean,
   ScrollDirection,
   WheelEventHandler<HTMLElement>,
   TouchEventHandler<HTMLElement>,
@@ -12,27 +18,19 @@ export const useWheelScroll = (): [
 ] => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrolling, setIsScrolling] = useState<ScrollDirection>(false);
+  const [touchStart, setTouchStart] = useState(0);
 
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const handleTouchStart: TouchEventHandler<HTMLElement> = (event) => {
-    const { touches } = event;
-    // console.log(touches);
-    const deltaY = touches[0].clientY - touches[0].pageY;
-    setIsScrolling(deltaY > 0 ? 'downward' : 'upward');
-    clearTimeout(scrollTimeout.current as NodeJS.Timeout);
+    setTouchStart(event.touches[0].clientY);
   };
 
   const handleTouchMove: TouchEventHandler<HTMLElement> = (event) => {
     const { touches } = event;
-    console.log(touches[0]);
-    const deltaY = touches[0].clientY - touches[0].pageY;
+    const deltaY = touchStart - touches[0].clientY;
     setScrollPosition((prevScrollPosition) => prevScrollPosition + deltaY);
-  };
-
-  const handleTouchEnd = () => {
-    setIsScrolling(false);
-    scrollTimeout.current = setTimeout(() => setScrollPosition(0), 50);
+    setIsScrolling(deltaY > 0 ? 'downward' : 'upward');
   };
 
   const handleWheel: WheelEventHandler<HTMLElement> = (event) => {
@@ -43,8 +41,16 @@ export const useWheelScroll = (): [
     scrollTimeout.current = setTimeout(() => setIsScrolling(false), 50);
   };
 
+  const handleTouchEnd = () => {
+    setIsScrolling(false);
+  };
+
+  const initiallyIdle = useMemo(() => {
+    return scrollPosition === 0 && scrolling === false;
+  }, [scrollPosition, scrolling]);
+
   return [
-    scrollPosition,
+    initiallyIdle,
     scrolling,
     handleWheel,
     handleTouchStart,

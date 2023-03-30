@@ -1,25 +1,37 @@
-import { Button as B } from '@/components/atoms';
+import { Button as B, Spinner } from '@/components/atoms';
+import { useKeyDown } from '@/hooks';
 import { HTMLMotionProps } from 'framer-motion';
 import { MouseEventHandler, PropsWithChildren, forwardRef } from 'react';
 import styled from 'styled-components';
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  PropsWithChildren<HTMLMotionProps<'button'>>
->(({ onClick, ...rest }, ref) => {
-  const handleClick: MouseEventHandler<HTMLButtonElement> = (eve) => {
-    eve.preventDefault();
-    onClick?.(eve);
-  };
+export interface Props extends PropsWithChildren<HTMLMotionProps<'button'>> {
+  isLoading?: boolean;
+}
 
-  return <StyledButton {...rest} onClick={handleClick} ref={ref} />;
-});
+export const Button = forwardRef<HTMLButtonElement, Props>(
+  ({ onClick, children, isLoading, ...rest }, ref) => {
+    const isKeyDown = useKeyDown();
+
+    const handleClick: MouseEventHandler<HTMLButtonElement> = (eve) => {
+      eve.preventDefault();
+      !isKeyDown && onClick?.(eve);
+    };
+
+    return (
+      <StyledButton {...rest} onClick={handleClick} ref={ref}>
+        {isLoading ? <Spinner /> : children}
+      </StyledButton>
+    );
+  }
+);
 
 Button.displayName = 'Form.Entries.Button';
 
 const StyledButton = styled(B)`
   padding: ${({ theme }) => `${theme.spacing['3']} ${theme.spacing['4']}`};
   min-width: 8rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
   border-radius: 0.5rem;
   outline: none;
   border: none;
@@ -29,8 +41,12 @@ const StyledButton = styled(B)`
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing['3']};
   svg {
     fill: ${({ theme }) => theme.colors.blue[50]};
+  }
+  &:disabled {
+    background-color: ${({ theme }) => `${theme.colors.blue[600]}30`};
   }
 `;

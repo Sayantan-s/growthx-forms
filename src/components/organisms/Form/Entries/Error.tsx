@@ -1,4 +1,5 @@
 import { Text, View } from '@/components/atoms';
+import { breakpoints } from '@/styles/theme';
 import DOMPurify from 'isomorphic-dompurify';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -37,6 +38,9 @@ const StyledError = styled(View)`
   border-radius: 0.3rem;
   svg {
     fill: ${({ theme }) => theme.colors.red[800]};
+  }
+  @media (max-width: ${breakpoints.tab}) {
+    width: 100%;
   }
 `;
 

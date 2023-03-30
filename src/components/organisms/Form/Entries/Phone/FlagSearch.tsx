@@ -188,6 +188,7 @@ const Panel = styled(View)`
   cursor: pointer;
   background-color: transparent;
   box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
+  -webkit-box-shadow: ${({ theme }) => `${theme.colors.black[700]} 0px 2px`};
   padding: ${({ theme }) => `${theme.spacing['2']} 0`};
   height: 100%;
   display: flex;
