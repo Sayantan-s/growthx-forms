@@ -17,7 +17,7 @@ function createFinalData(payload: FormState) {
       } else if (isPlainObject(parsedValue)) {
         const values = Object.values(parsedValue);
         data[key] = values.join(',');
-      }
+      } else data[key] = payload[key];
     } catch (error) {
       data[key] = payload[key];
     }
