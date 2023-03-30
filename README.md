@@ -1,9 +1,5 @@
 ## Start Project
 
-First, run the development server:
-
 ```bash
-yarn dev
+yarn run growthx
 ```
-
-## Deploy on Vercel
