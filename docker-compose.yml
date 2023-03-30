@@ -1,0 +1,10 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    environment:
+      FLAGS_API: https://flagcdn.com/en/codes.json
+      NEXT_PUBLIC_GROWTHX_API: https://eo3oi83n1j77wgp.m.pipedream.net
