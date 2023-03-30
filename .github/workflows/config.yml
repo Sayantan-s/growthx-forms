@@ -21,8 +21,8 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker-compose -f docker-compose.yml build
-          docker tag growthx-app ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-app:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-app:${{ github.sha }}
+          docker tag growthx-forms_app ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-forms_app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-forms_app:${{ github.sha }}
 
       # - name: Deploy to Cloudflare Pages
       #   uses: cloudflare/pages-deploy@v3
