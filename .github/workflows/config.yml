@@ -18,11 +18,11 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      # - name: Build and Push Docker Image
-      #   run: |
-      #     docker-compose -f docker-compose.yml build
-      #     docker tag nextjs-app ${{ secrets.DOCKER_USERNAME }}/nextjs-app:${{ github.sha }}
-      #     docker push ${{ secrets.DOCKER_USERNAME }}/nextjs-app:${{ github.sha }}
+      - name: Build and Push Docker Image
+        run: |
+          docker-compose -f docker-compose.yml build
+          docker tag growthx-app ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/growthx-app:${{ github.sha }}
 
       # - name: Deploy to Cloudflare Pages
       #   uses: cloudflare/pages-deploy@v3
